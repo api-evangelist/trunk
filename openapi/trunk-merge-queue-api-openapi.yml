@@ -1,0 +1,382 @@
+openapi: 3.0.1
+info:
+  title: Trunk Flaky Tests Merge Queue API
+  description: HTTP REST API for the Trunk platform. Covers the Flaky Tests API (query test-case state, list quarantined / unhealthy / failing tests, link external tickets) and the Merge Queue API (control the flake-aware parallel merge queue and read its metrics). All requests are authenticated with an organization API token passed in the x-api-token header and return JSON.
+  termsOfService: https://trunk.io/legal/terms
+  contact:
+    name: Trunk Support
+    url: https://docs.trunk.io
+  version: '1.0'
+servers:
+- url: https://api.trunk.io/v1
+  description: Trunk REST API
+security:
+- ApiKeyAuth: []
+tags:
+- name: Merge Queue
+  description: Control the Trunk Merge Queue.
+paths:
+  /submitPullRequest:
+    post:
+      operationId: submitPullRequest
+      tags:
+      - Merge Queue
+      summary: Submit a pull request to the merge queue
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PullRequestRef'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PullRequestState'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '500':
+          $ref: '#/components/responses/ServerError'
+  /cancelPullRequest:
+    post:
+      operationId: cancelPullRequest
+      tags:
+      - Merge Queue
+      summary: Cancel a pull request in the merge queue
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PullRequestRef'
+      responses:
+        '200':
+          description: OK
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '500':
+          $ref: '#/components/responses/ServerError'
+  /getSubmittedPullRequest:
+    post:
+      operationId: getSubmittedPullRequest
+      tags:
+      - Merge Queue
+      summary: Get the state of a submitted pull request
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PullRequestRef'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PullRequestState'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
+  /restartTestsOnPullRequest:
+    post:
+      operationId: restartTestsOnPullRequest
+      tags:
+      - Merge Queue
+      summary: Restart tests on a pull request
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PullRequestRef'
+      responses:
+        '200':
+          description: OK
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '500':
+          $ref: '#/components/responses/ServerError'
+  /setImpactedTargets:
+    post:
+      operationId: setImpactedTargets
+      tags:
+      - Merge Queue
+      summary: Set the impacted targets for a pull request
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/PullRequestRef'
+              - type: object
+                required:
+                - impactedTargets
+                properties:
+                  impactedTargets:
+                    type: array
+                    items:
+                      type: string
+      responses:
+        '200':
+          description: OK
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '500':
+          $ref: '#/components/responses/ServerError'
+  /getMergeQueueTestingDetails:
+    post:
+      operationId: getMergeQueueTestingDetails
+      tags:
+      - Merge Queue
+      summary: Get in-progress merge queue testing details
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/QueueRef'
+      responses:
+        '200':
+          description: OK
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '500':
+          $ref: '#/components/responses/ServerError'
+  /createQueue:
+    post:
+      operationId: createQueue
+      tags:
+      - Merge Queue
+      summary: Create a merge queue
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/QueueRef'
+      responses:
+        '200':
+          description: OK
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '500':
+          $ref: '#/components/responses/ServerError'
+  /getQueue:
+    post:
+      operationId: getQueue
+      tags:
+      - Merge Queue
+      summary: Get a merge queue
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/QueueRef'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  state:
+                    type: string
+                    enum:
+                    - RUNNING
+                    - PAUSED
+                    - DRAINING
+                    - SWITCHING_MODES
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
+  /updateQueue:
+    post:
+      operationId: updateQueue
+      tags:
+      - Merge Queue
+      summary: Update a merge queue configuration
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/QueueRef'
+      responses:
+        '200':
+          description: OK
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '500':
+          $ref: '#/components/responses/ServerError'
+  /deleteQueue:
+    post:
+      operationId: deleteQueue
+      tags:
+      - Merge Queue
+      summary: Delete a merge queue
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/QueueRef'
+      responses:
+        '200':
+          description: OK
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
+  /getMergeQueueMetrics:
+    get:
+      operationId: getMergeQueueMetrics
+      tags:
+      - Merge Queue
+      summary: Get merge queue metrics (Prometheus text exposition format)
+      parameters:
+      - name: repo
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: repoHost
+        in: query
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: string
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '500':
+          $ref: '#/components/responses/ServerError'
+components:
+  schemas:
+    QueueRef:
+      type: object
+      required:
+      - repo
+      - targetBranch
+      properties:
+        repo:
+          $ref: '#/components/schemas/Repo'
+        targetBranch:
+          type: string
+          example: main
+    PullRequestRef:
+      type: object
+      required:
+      - repo
+      - targetBranch
+      - pr
+      properties:
+        repo:
+          $ref: '#/components/schemas/Repo'
+        targetBranch:
+          type: string
+          example: main
+        pr:
+          type: object
+          required:
+          - number
+          properties:
+            number:
+              type: integer
+    Repo:
+      type: object
+      required:
+      - host
+      - owner
+      - name
+      properties:
+        host:
+          type: string
+          description: Repository host, e.g. github.com or gitlab.com.
+          example: github.com
+        owner:
+          type: string
+          example: my-org
+        name:
+          type: string
+          example: my-repo
+    PullRequestState:
+      type: object
+      properties:
+        state:
+          type: string
+          enum:
+          - NOT_READY
+          - PENDING
+          - TESTING
+          - TESTS_PASSED
+          - MERGED
+          - FAILED
+          - CANCELLED
+          - PENDING_FAILURE
+    Error:
+      type: object
+      properties:
+        message:
+          type: string
+  responses:
+    Unauthorized:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    ServerError:
+      description: Internal Server Error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: Bad Request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: Not Found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: x-api-token
+      description: Organization API token from Settings > Organization > General > API.
