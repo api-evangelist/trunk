@@ -1,0 +1,59 @@
+generated: '2026-07-21'
+method: derived
+status: candidate
+source: openapi/trunk-openapi.yml
+note: >-
+  No official hosted/remote Trunk MCP server was found. This is a candidate tool
+  list derived one-to-one from the OpenAPI operations, for building an MCP wrapper.
+server:
+  name: trunk
+  transport: http
+tools:
+- name: getTestDetails
+  description: Get the details of a test case.
+  source_operation: openapi/trunk-openapi.yml#getTestDetails
+- name: listQuarantinedTests
+  description: Get a list of quarantined tests.
+  source_operation: openapi/trunk-openapi.yml#listQuarantinedTests
+- name: listUnhealthyTests
+  description: Get a list of unhealthy (FLAKY/BROKEN) tests.
+  source_operation: openapi/trunk-openapi.yml#listUnhealthyTests
+- name: listFailingTests
+  description: Get distinct tests that failed in a time range.
+  source_operation: openapi/trunk-openapi.yml#listFailingTests
+- name: linkTicketToTestCase
+  description: Link an external ticket to a test case.
+  source_operation: openapi/trunk-openapi.yml#linkTicketToTestCase
+- name: submitPullRequest
+  description: Submit a pull request to the merge queue.
+  source_operation: openapi/trunk-openapi.yml#submitPullRequest
+- name: cancelPullRequest
+  description: Cancel a pull request in the merge queue.
+  source_operation: openapi/trunk-openapi.yml#cancelPullRequest
+- name: getSubmittedPullRequest
+  description: Get the state of a submitted pull request.
+  source_operation: openapi/trunk-openapi.yml#getSubmittedPullRequest
+- name: restartTestsOnPullRequest
+  description: Restart tests on a pull request.
+  source_operation: openapi/trunk-openapi.yml#restartTestsOnPullRequest
+- name: setImpactedTargets
+  description: Set impacted targets for a pull request.
+  source_operation: openapi/trunk-openapi.yml#setImpactedTargets
+- name: getMergeQueueTestingDetails
+  description: Get in-progress merge queue testing details.
+  source_operation: openapi/trunk-openapi.yml#getMergeQueueTestingDetails
+- name: createQueue
+  description: Create a merge queue.
+  source_operation: openapi/trunk-openapi.yml#createQueue
+- name: getQueue
+  description: Get a merge queue.
+  source_operation: openapi/trunk-openapi.yml#getQueue
+- name: updateQueue
+  description: Update a merge queue configuration.
+  source_operation: openapi/trunk-openapi.yml#updateQueue
+- name: deleteQueue
+  description: Delete a merge queue.
+  source_operation: openapi/trunk-openapi.yml#deleteQueue
+- name: getMergeQueueMetrics
+  description: Get merge queue metrics (Prometheus text format).
+  source_operation: openapi/trunk-openapi.yml#getMergeQueueMetrics

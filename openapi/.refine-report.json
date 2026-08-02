@@ -1,0 +1,16 @@
+{
+  "provider": "trunk",
+  "sources": [
+    "trunk-flaky-tests-api-openapi.yml",
+    "trunk-merge-queue-api-openapi.yml"
+  ],
+  "outputs": [
+    "trunk-flaky-tests-api-openapi.yml",
+    "trunk-merge-queue-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

@@ -1,7 +1,25 @@
 aid: trunk
 name: Trunk
-description: Trunk is a company surfaced as a portfolio company of a16z and added to the API Evangelist
-  network as a stub for enrichment. This profile is a lead awaiting the enrichment pipeline.
+description: >-
+  Trunk builds developer experience and CI reliability tooling. Its platform spans
+  Code Quality (a meta-linter and static analysis manager driven by the trunk CLI),
+  a flake-aware parallel Merge Queue, and Flaky Tests detection / CI Analytics. Test
+  results are uploaded from CI via the Trunk Analytics CLI / GitHub Action, and an
+  HTTP REST API at api.trunk.io exposes Flaky Tests and Merge Queue control plus
+  Svix-powered outbound webhooks. Trunk is a portfolio company of a16z.
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/trunk.png
 url: https://raw.githubusercontent.com/api-evangelist/trunk/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
@@ -9,14 +27,164 @@ x-backed-by:
 - a16z
 x-tier: stub
 x-tier-reason: portfolio-lead
+x-canonical: trunk-io
+x-canonical-note: >-
+  This record duplicates the canonical, more fully enriched provider at
+  all/trunk-io (same company, Trunk.io). Candidate for dedupe.
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-21'
 tags:
-- Company
-apis: []
+- Developer Tools
+- CI/CD
+- Code Quality
+- Flaky Tests
+- Merge Queue
+- Test Analytics
+- Static Analysis
+- Webhooks
+apis:
+- aid: trunk:test-uploads-api
+  name: Trunk Test Uploads (Analytics CLI)
+  tags:
+  - Test Uploads
+  - CI Integration
+  - JUnit
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.trunk.io/flaky-tests/uploader
+  baseURL: https://api.trunk.io
+  description: >-
+    CI test-result ingestion surface. The trunk-analytics-cli (and the trunk-io/analytics-uploader GitHub
+    Action) uploads JUnit XML, Bazel BEP, and XCResult test reports to Trunk for flaky-test detection,
+    authenticated with an organization slug (--org-url-slug) and API token (--token / TRUNK_API_TOKEN).
+  properties:
+  - url: https://docs.trunk.io/flaky-tests/uploader
+    type: Documentation
+  - url: https://docs.trunk.io/flaky-tests/get-started/ci-providers/github-actions
+    type: GettingStarted
+- aid: trunk:webhooks-api
+  name: Trunk Webhooks
+  tags:
+  - Webhooks
+  - Events
+  - Svix
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.trunk.io/flaky-tests/webhooks
+  baseURL: https://api.trunk.io
+  description: >-
+    Svix-powered outbound webhooks for subscribing to Flaky Tests events (test_case.status_changed, test_case.monitor_status_changed,
+    test_case.investigation_completed) and Merge Queue events (pull_request.* and pull_request_batch.*).
+    Used to trigger downstream workflows like GitHub Issues.
+  properties:
+  - url: https://docs.trunk.io/flaky-tests/webhooks
+    type: Documentation
+  - url: asyncapi/trunk-webhooks.yml
+    type: Webhooks
+- aid: trunk:code-quality-cli
+  name: Trunk Code Quality CLI
+  tags:
+  - Code Quality
+  - Meta-Linter
+  - Static Analysis
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.trunk.io/code-quality
+  baseURL: https://docs.trunk.io/code-quality
+  description: >-
+    Meta-linter and static analysis manager exposed through the trunk CLI and a local daemon (no public
+    REST API). Commands include trunk init, trunk check, and trunk check --all; it hermetically installs
+    and runs third-party linters, formatters, and security scanners, operating in Hold The Line mode by
+    default and serving real-time annotations to IDE extensions.
+  properties:
+  - url: https://docs.trunk.io/code-quality
+    type: Documentation
+  - url: https://docs.trunk.io/cli
+    type: Documentation
+- aid: trunk:trunk-flaky-tests-api
+  name: Trunk Flaky Tests API
+  description: Query Flaky Tests state and link tickets.
+  humanURL: https://docs.trunk.io/flaky-tests/reference/api-reference
+  baseURL: https://api.trunk.io/v1
+  tags:
+  - Flaky Tests
+  properties:
+  - type: OpenAPI
+    url: openapi/trunk-flaky-tests-api-openapi.yml
+  - type: Documentation
+    url: https://docs.trunk.io/flaky-tests/flaky-tests
+  - type: APIReference
+    url: https://docs.trunk.io/flaky-tests/reference/api-reference
+  - type: Documentation
+    url: https://docs.trunk.io/merge-queue
+  - type: APIReference
+    url: https://docs.trunk.io/merge-queue/reference/merge
+- aid: trunk:trunk-merge-queue-api
+  name: Trunk Merge Queue API
+  description: Control the Trunk Merge Queue.
+  humanURL: https://docs.trunk.io/flaky-tests/reference/api-reference
+  baseURL: https://api.trunk.io/v1
+  tags:
+  - Merge Queue
+  properties:
+  - type: OpenAPI
+    url: openapi/trunk-merge-queue-api-openapi.yml
+  - type: Documentation
+    url: https://docs.trunk.io/flaky-tests/flaky-tests
+  - type: APIReference
+    url: https://docs.trunk.io/flaky-tests/reference/api-reference
+  - type: Documentation
+    url: https://docs.trunk.io/merge-queue
+  - type: APIReference
+    url: https://docs.trunk.io/merge-queue/reference/merge
+common:
+- type: Website
+  url: https://trunk.io/
+- type: Documentation
+  url: https://docs.trunk.io
+- type: GitHubOrganization
+  url: https://github.com/trunk-io
+- type: LinkedIn
+  url: https://www.linkedin.com/company/trunkhq
+- type: Blog
+  url: https://trunk.io/feed.xml
+- type: TermsOfService
+  url: https://trunk.io/legal/terms
+- type: Authentication
+  url: authentication/trunk-authentication.yml
+- type: AgenticAccess
+  url: agentic-access/trunk-agentic-access.yml
+- type: MCPServer
+  url: mcp/trunk-mcp.yml
+- type: ErrorCatalog
+  url: errors/trunk-problem-types.yml
+- type: Conventions
+  url: conventions/trunk-conventions.yml
+- type: DataModel
+  url: data-model/trunk-data-model.yml
+- type: Conformance
+  url: conformance/trunk-conformance.yml
+- type: Lifecycle
+  url: lifecycle/trunk-lifecycle.yml
+- type: CLI
+  url: cli/trunk-cli.yml
+- type: Webhooks
+  url: asyncapi/trunk-webhooks.yml
+- type: Overlay
+  url: overlays/trunk-openapi-overlay.yaml
+- type: AgentSkill
+  url: skills/_index.yml
+- type: DomainSecurity
+  url: security/trunk-domain-security.yml
+- type: VulnerabilityDisclosure
+  url: security/trunk-vulnerability-disclosure.yml
+- type: Security
+  url: https://trunk.io/security
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
+x-enrichment:
+  date: '2026-07-21'
+  status: enriched
+  artifacts_added: 15
+  pass: local-v1

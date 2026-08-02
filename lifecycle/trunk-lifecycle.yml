@@ -1,0 +1,15 @@
+generated: '2026-07-21'
+method: derived
+source: openapi/trunk-openapi.yml
+versioning:
+  scheme: uri-path
+  current: v1
+  base_url: https://api.trunk.io/v1
+terms_of_service: https://trunk.io/legal/terms
+deprecation:
+  policy_url: null
+  sunset_header: null
+  notes: No deprecation policy or Sunset/Deprecation header support was found in the OpenAPI or docs.
+sla:
+  url: null
+deprecated_operations: []

@@ -1,0 +1,28 @@
+generated: '2026-07-21'
+method: searched
+source: https://docs.trunk.io/cli
+clis:
+- name: trunk
+  description: >-
+    The trunk CLI drives Code Quality (a meta-linter / static analysis manager that
+    hermetically installs and runs third-party linters, formatters, and security
+    scanners) and runs a local daemon serving real-time annotations to IDE extensions.
+  docs: https://docs.trunk.io/cli
+  install:
+  - method: shell
+    command: curl https://get.trunk.io -fsSL | bash
+  commands:
+  - trunk init
+  - trunk check
+  - trunk check --all
+  modes:
+  - Hold The Line (default; checks only changed lines)
+- name: trunk-analytics-cli
+  description: >-
+    Uploads JUnit XML, Bazel BEP, and XCResult test reports from CI to Trunk for
+    Flaky Tests detection. Also distributed as the trunk-io/analytics-uploader
+    GitHub Action.
+  docs: https://docs.trunk.io/flaky-tests/uploader
+  auth:
+    org: --org-url-slug
+    token: --token (env TRUNK_API_TOKEN)

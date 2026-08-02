@@ -1,0 +1,20 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Trunk API
+  version: 1.0.0
+extends: openapi/trunk-openapi.yml
+actions:
+- target: $.info
+  update:
+    x-apievangelist-enriched: '2026-07-21'
+    x-apievangelist-artifacts:
+      authentication: authentication/trunk-authentication.yml
+      conventions: conventions/trunk-conventions.yml
+      errors: errors/trunk-problem-types.yml
+      data-model: data-model/trunk-data-model.yml
+      agentic-access: agentic-access/trunk-agentic-access.yml
+      webhooks: asyncapi/trunk-webhooks.yml
+- target: $.info
+  update:
+    x-apievangelist-pagination: cursor (page_query.page_token / page.next_page_token)
+    x-apievangelist-error-envelope: '{ "message": string } (application/json, not RFC 9457)'

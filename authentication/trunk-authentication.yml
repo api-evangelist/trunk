@@ -1,0 +1,16 @@
+generated: '2026-07-21'
+method: derived
+source: openapi/trunk-openapi.yml
+summary:
+  types:
+  - apiKey
+  api_key_in:
+  - header
+schemes:
+- name: ApiKeyAuth
+  type: apiKey
+  in: header
+  parameter: x-api-token
+  description: Organization API token from Settings > Organization > General > API.
+  sources:
+  - openapi/trunk-openapi.yml

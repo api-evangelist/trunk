@@ -1,0 +1,64 @@
+generated: '2026-07-21'
+method: derived
+source: openapi/trunk-openapi.yml
+entities:
+- name: Repo
+  description: A source repository identified by host, owner, and name.
+  fields: [host, owner, name]
+- name: TestDetail
+  description: A test case with health status, failure rates, ownership, and quarantine state.
+  fields: [id, name, variant, classname, file_path, status, failure_rate_last_7d, failure_rate_last_24h, most_common_failures, quarantined, codeowners, pull_requests_impacted_last_7d, html_url, ticket]
+- name: Status
+  description: Health status of a test case (HEALTHY / FLAKY / BROKEN) with reason and timestamp.
+  fields: [value, reason, timestamp]
+- name: PageQuery
+  description: Cursor pagination request (page_size + page_token).
+  fields: [page_size, page_token]
+- name: Page
+  description: Cursor pagination response envelope.
+  fields: [total_rows, total_pages, page_index, next_page_token, prev_page_token, last_page_token]
+- name: PullRequestRef
+  description: Reference to a pull request on a target branch of a repo.
+  fields: [repo, targetBranch, pr]
+- name: PullRequestState
+  description: Merge-queue state of a pull request.
+  fields: [state]
+- name: QueueRef
+  description: Reference to a merge queue for a repo + target branch.
+  fields: [repo, targetBranch]
+relationships:
+- from: TestDetail
+  to: Status
+  kind: has_one
+  via: status
+- from: TestDetail
+  to: Repo
+  kind: belongs_to
+  via: repo
+  notes: Test cases are scoped to a repo via the request Repo object.
+- from: PullRequestRef
+  to: Repo
+  kind: belongs_to
+  via: repo
+- from: PullRequestRef
+  to: PullRequestState
+  kind: has_one
+  via: state
+- from: QueueRef
+  to: Repo
+  kind: belongs_to
+  via: repo
+id_fields:
+- entity: TestDetail
+  field: id
+  format: uuid
+- entity: TestDetail
+  field: ticket.html_url
+  notes: External Jira/Linear ticket link.
+enums:
+- name: Status.value
+  values: [HEALTHY, FLAKY, BROKEN]
+- name: PullRequestState.state
+  values: [NOT_READY, PENDING, TESTING, TESTS_PASSED, MERGED, FAILED, CANCELLED, PENDING_FAILURE]
+- name: Queue.state
+  values: [RUNNING, PAUSED, DRAINING, SWITCHING_MODES]

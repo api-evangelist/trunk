@@ -1,0 +1,11 @@
+generated: '2026-07-21'
+method: generated
+skills:
+- file: trunk-triage-flaky-tests.md
+  name: Triage flaky tests
+  api: openapi/trunk-openapi.yml
+  operations: [listUnhealthyTests, listQuarantinedTests, getTestDetails, linkTicketToTestCase]
+- file: trunk-merge-queue-control.md
+  name: Control the merge queue
+  api: openapi/trunk-openapi.yml
+  operations: [submitPullRequest, getSubmittedPullRequest, restartTestsOnPullRequest, cancelPullRequest]

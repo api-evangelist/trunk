@@ -1,0 +1,55 @@
+generated: '2026-07-21'
+method: derived
+source: openapi/trunk-openapi.yml
+authentication:
+  style: apiKey
+  location: header
+  parameter: x-api-token
+  notes: Organization API token from Settings > Organization > General > API.
+  see: authentication/trunk-authentication.yml
+idempotency:
+  supported: false
+  notes: >-
+    No Idempotency-Key header or param is documented in the OpenAPI. Merge Queue
+    control operations are all POST but do not advertise an idempotency contract.
+pagination:
+  style: cursor
+  request:
+    object: page_query
+    params:
+    - name: page_size
+      type: integer
+      min: 1
+      max: 100
+    - name: page_token
+      type: string
+      description: Opaque cursor for the next page.
+  response:
+    object: page
+    fields:
+    - total_rows
+    - total_pages
+    - page_index
+    - next_page_token
+    - prev_page_token
+    - last_page_token
+  applies_to:
+  - listQuarantinedTests
+  - listUnhealthyTests
+  - listFailingTests
+versioning:
+  scheme: uri-path
+  current: v1
+  base_url: https://api.trunk.io/v1
+error_envelope:
+  content_type: application/json
+  shape: '{ "message": string }'
+  format: plain
+  see: errors/trunk-problem-types.yml
+rate_limit_signaling:
+  documented: false
+  see: rate-limits/
+metrics:
+  format: prometheus-text
+  operation: getMergeQueueMetrics
+  notes: Merge Queue metrics are exposed in Prometheus text exposition format (text/plain).

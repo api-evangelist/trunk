@@ -1,0 +1,24 @@
+generated: '2026-07-21'
+method: derived
+source: openapi/trunk-openapi.yml
+standards:
+- id: apikey-auth
+  conforms: true
+  evidence: securitySchemes ApiKeyAuth type apiKey in header (x-api-token)
+- id: oauth2
+  conforms: false
+  evidence: no oauth2 securityScheme declared
+- id: oidc
+  conforms: false
+- id: rfc9457-problem-details
+  conforms: false
+  evidence: errors use plain application/json {message}, not application/problem+json
+- id: cursor-pagination
+  conforms: true
+  evidence: PageQuery.page_token / Page.next_page_token cursor pagination
+- id: prometheus-metrics
+  conforms: true
+  evidence: getMergeQueueMetrics returns Prometheus text exposition format
+- id: openapi-3
+  conforms: true
+  evidence: OpenAPI 3.0.1 document published

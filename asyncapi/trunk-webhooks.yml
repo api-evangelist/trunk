@@ -1,0 +1,29 @@
+generated: '2026-07-21'
+method: searched
+source: https://docs.trunk.io/flaky-tests/webhooks
+spec_type: Webhooks
+transport: Svix
+description: >-
+  Trunk delivers outbound webhooks (powered by Svix) for Flaky Tests and Merge Queue
+  events. Consumers subscribe to trigger downstream workflows (e.g. creating GitHub
+  Issues on a status change).
+events:
+- name: test_case.status_changed
+  domain: Flaky Tests
+- name: test_case.monitor_status_changed
+  domain: Flaky Tests
+- name: test_case.investigation_completed
+  domain: Flaky Tests
+- name: pull_request.queued
+  domain: Merge Queue
+- name: pull_request.testing
+  domain: Merge Queue
+- name: pull_request.merged
+  domain: Merge Queue
+- name: pull_request.failed
+  domain: Merge Queue
+- name: pull_request.canceled
+  domain: Merge Queue
+- name: pull_request_batch.*
+  domain: Merge Queue
+  notes: Batch-level pull request events.

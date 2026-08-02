@@ -1,0 +1,82 @@
+generated: '2026-07-21'
+method: derived
+source: openapi/trunk-openapi.yml
+format: plain
+envelope:
+  content_type: application/json
+  schema: Error
+  fields:
+  - name: message
+    type: string
+    description: Human-readable error message.
+note: >-
+  Errors are returned as a plain JSON object ({"message": "..."}) via the shared
+  Error schema, not RFC 9457 application/problem+json. Status codes below are the
+  4xx/5xx responses declared across the OpenAPI operations.
+problems:
+- status: 400
+  title: Bad Request
+  schema: Error
+  operations:
+  - getTestDetails
+  - listQuarantinedTests
+  - listUnhealthyTests
+  - listFailingTests
+  - linkTicketToTestCase
+  - submitPullRequest
+  - restartTestsOnPullRequest
+  - setImpactedTargets
+  - createQueue
+  - updateQueue
+- status: 401
+  title: Unauthorized
+  schema: Error
+  remediation: >-
+    Supply a valid organization API token in the x-api-token header (Settings >
+    Organization > General > API).
+  operations:
+  - getTestDetails
+  - listQuarantinedTests
+  - listUnhealthyTests
+  - listFailingTests
+  - linkTicketToTestCase
+  - submitPullRequest
+  - cancelPullRequest
+  - getSubmittedPullRequest
+  - restartTestsOnPullRequest
+  - setImpactedTargets
+  - getMergeQueueTestingDetails
+  - createQueue
+  - getQueue
+  - updateQueue
+  - deleteQueue
+  - getMergeQueueMetrics
+- status: 404
+  title: Not Found
+  schema: Error
+  operations:
+  - getTestDetails
+  - linkTicketToTestCase
+  - getSubmittedPullRequest
+  - getQueue
+  - deleteQueue
+- status: 500
+  title: Internal Server Error
+  schema: Error
+  operations:
+  - getTestDetails
+  - listQuarantinedTests
+  - listUnhealthyTests
+  - listFailingTests
+  - linkTicketToTestCase
+  - submitPullRequest
+  - cancelPullRequest
+  - getSubmittedPullRequest
+  - restartTestsOnPullRequest
+  - setImpactedTargets
+  - getMergeQueueTestingDetails
+  - createQueue
+  - getQueue
+  - updateQueue
+  - deleteQueue
+  - getMergeQueueMetrics
