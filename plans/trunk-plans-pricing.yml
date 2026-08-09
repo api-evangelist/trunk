@@ -1,0 +1,130 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: Trunk
+providerId: trunk-io
+created: '2026-06-20'
+modified: '2026-06-20'
+reconciled: true
+tags:
+- Developer Tools
+- CI/CD
+- Code Quality
+- Flaky Tests
+- Merge Queue
+- Plans
+description: >-
+  Trunk prices its platform per committer with usage measured in test spans.
+  The Free plan covers up to 5 committers at no cost with 1M test spans per
+  committer. The Team plan removes the committer cap (free to start, with
+  custom pricing at scale) and adds Merge Queue, multi-CI, admin, and
+  authentication controls. Enterprise is custom-priced with SAML SSO,
+  on-premise deployment, custom billing terms, and dedicated support. Code
+  Quality CLI usage and the local linter daemon are available across plans.
+notes: >-
+  Pricing reflects the trunk.io/pricing page as published. Test spans are the
+  primary usage metric for Flaky Tests; volume discounts on spans are available
+  on Enterprise. Verify exact per-committer pricing at scale with Trunk sales.
+sources:
+- https://trunk.io/pricing
+- https://docs.trunk.io
+plans:
+- id: trunk-free
+  name: Free
+  type: free
+  description: >-
+    For open-source projects and small teams of up to 5 committers, with
+    flaky-test quarantining, PR comments, and Code Quality CLI/VS Code usage.
+  entries:
+  - label: Committers
+    name: committers_free
+    type: limit
+    metric: committers
+    limit: 5
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: $0
+    userMultiplied: false
+  - label: Test Spans
+    name: test_spans_free
+    type: usage
+    metric: test_spans
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1000000
+    price: 1M test spans per committer included
+    userMultiplied: true
+  elements:
+  - name: Flaky Test Quarantining
+  - name: PR Comments
+  - name: Code Quality CLI
+  - name: VS Code Extension
+  - name: Data Encryption (in transit and at rest)
+  - name: US Data Residency
+  - name: SOC 2 Type 2
+- id: trunk-team
+  name: Team
+  type: usage
+  description: >-
+    Unlimited committers (free to start, custom pricing at scale) with
+    everything in Free plus Merge Queue, multi-CI support, Slack
+    notifications, admin tools, and advanced authentication controls.
+  entries:
+  - label: Committers
+    name: committers_team
+    type: usage
+    metric: committers
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: free to start; custom at scale
+    userMultiplied: true
+  - label: Test Spans
+    name: test_spans_team
+    type: usage
+    metric: test_spans
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1000000
+    price: 1M test spans per committer included
+    userMultiplied: true
+  elements:
+  - name: Everything in Free
+  - name: Merge Queue
+  - name: Multi-CI Support
+  - name: Slack Notifications
+  - name: Admin Tools
+  - name: Advanced Authentication Controls
+- id: trunk-enterprise
+  name: Enterprise
+  type: enterprise
+  description: >-
+    Everything in Team plus SAML SSO, on-premise deployment, custom billing
+    and payment terms, dedicated support, feature prioritization, and volume
+    discounts on test spans. Contact Trunk sales.
+  entries:
+  - label: Enterprise Agreement
+    name: enterprise
+    type: flat
+    metric: contract
+    limit: -1
+    timeFrame: year
+    geo: global
+    unit: 1
+    price: contact sales
+    userMultiplied: false
+  elements:
+  - name: Everything in Team
+  - name: SAML SSO
+  - name: On-Premise Deployment
+  - name: Custom Billing and Payment Terms
+  - name: Dedicated Support
+  - name: Feature Prioritization
+  - name: Test Span Volume Discounts
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

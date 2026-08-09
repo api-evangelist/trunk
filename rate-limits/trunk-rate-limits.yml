@@ -1,0 +1,60 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+provider: Trunk
+providerId: trunk-io
+created: '2026-06-20'
+modified: '2026-06-20'
+reconciled: false
+tags:
+- Developer Tools
+- CI/CD
+- Flaky Tests
+- Merge Queue
+- Rate Limiting
+- Quotas
+- Throttling
+description: >-
+  The Trunk REST API (api.trunk.io) is an authenticated HTTP API using the
+  x-api-token header and standard HTTP response codes. Trunk does not publish
+  explicit numeric request-per-minute rate limits in its public API reference;
+  list endpoints are paginated (page_size 1-100) which bounds response volume,
+  and Flaky Tests uploads are processed periodically rather than in real time.
+  Usage on the platform is metered by test spans per committer rather than by
+  API call rate. Specific throttling thresholds are not reconciled in this
+  artifact.
+notes: >-
+  No public numeric rate limits are documented. Confirm any throttling or
+  burst limits with Trunk support during reconciliation. Pagination caps on
+  list endpoints and periodic (non-realtime) upload processing are the main
+  documented volume controls.
+sources:
+- https://docs.trunk.io/references/apis
+- https://docs.trunk.io/flaky-tests/reference/api-reference
+- https://docs.trunk.io/flaky-tests/uploader
+responseCodes:
+  throttled: 429
+limits:
+- name: REST API Requests
+  scope: account
+  metric: requests
+  limit: see provider documentation
+  notes: No public numeric RPM/RPD published; authenticated via x-api-token.
+- name: List Endpoint Page Size
+  scope: request
+  metric: rows
+  limit: 100
+  notes: page_query.page_size is bounded to 1-100 on list endpoints.
+- name: Test Result Uploads
+  scope: account
+  metric: uploads
+  limit: see provider documentation
+  notes: Uploaded test results are processed periodically (not real-time); allow ~1 hour before results appear.
+policies:
+- name: Pagination
+  description: List endpoints return paginated results with next/prev/last page tokens; page through rather than requesting large windows.
+- name: Backoff Strategy
+  description: Clients should implement exponential backoff with jitter and honor Retry-After on 429 responses.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

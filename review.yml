@@ -1,0 +1,85 @@
+aid: trunk-io
+name: Trunk
+review:
+  question: Does Trunk expose a documented public WebSocket or streaming API?
+  answer: false
+  date: '2026-06-20'
+  reviewer: API Evangelist
+  asyncapiSpecCreated: false
+  asyncapiScopeNote: |
+    No AsyncAPI document was created. Trunk's only documented event-driven
+    surface is outbound HTTP webhooks delivered via Svix (Flaky Tests and
+    Merge Queue events). There is no documented WebSocket (ws://, wss://) or
+    HTTP Server-Sent Events (SSE) streaming endpoint. Per API Evangelist
+    scope, SSE would be in-scope for AsyncAPI modeling, but Trunk publishes
+    none; Svix webhooks are modeled descriptively in apis.yml rather than as
+    an AsyncAPI channel in this pass.
+findings:
+  summary: |
+    Trunk does not publish a documented public WebSocket or SSE streaming API.
+    The Trunk platform exposes a REST (HTTPS) API under
+    https://api.trunk.io/v1 covering the Flaky Tests API and the Merge Queue
+    API, authenticated with the x-api-token header. CI test results are
+    ingested out-of-band by the trunk-analytics-cli / trunk-io
+    analytics-uploader GitHub Action (JUnit XML, Bazel BEP, XCResult) and
+    processed periodically, not streamed. Event delivery is outbound webhooks
+    powered by Svix. Code Quality is delivered through the trunk CLI and a
+    local daemon (IDE annotations), with no public REST/streaming API.
+  transports:
+    - protocol: REST
+      scheme: https
+      baseURL: https://api.trunk.io/v1
+      documented: true
+    - protocol: Webhooks
+      scheme: https
+      note: Outbound webhooks delivered via Svix for Flaky Tests and Merge Queue events. Inbound HTTP callbacks, not a streaming connection.
+      documented: true
+    - protocol: SSE
+      scheme: https
+      documented: false
+      note: No Server-Sent Events streaming endpoint is documented.
+    - protocol: WebSocket
+      scheme: wss
+      documented: false
+      note: No WebSocket endpoint is documented in Trunk's API reference, Flaky Tests, Merge Queue, or Code Quality docs as of the review date.
+  endpointsConfirmedRest:
+    - POST https://api.trunk.io/v1/flaky-tests/get-test-details
+    - POST https://api.trunk.io/v1/flaky-tests/list-quarantined-tests
+    - POST https://api.trunk.io/v1/flaky-tests/list-unhealthy-tests
+    - POST https://api.trunk.io/v1/flaky-tests/list-failing-tests
+    - POST https://api.trunk.io/v1/flaky-tests/link-ticket-to-test-case
+    - POST https://api.trunk.io/v1/submitPullRequest
+    - POST https://api.trunk.io/v1/cancelPullRequest
+    - POST https://api.trunk.io/v1/getSubmittedPullRequest
+    - POST https://api.trunk.io/v1/restartTestsOnPullRequest
+    - POST https://api.trunk.io/v1/setImpactedTargets
+    - POST https://api.trunk.io/v1/getMergeQueueTestingDetails
+    - POST https://api.trunk.io/v1/createQueue
+    - POST https://api.trunk.io/v1/getQueue
+    - POST https://api.trunk.io/v1/updateQueue
+    - POST https://api.trunk.io/v1/deleteQueue
+    - GET  https://api.trunk.io/v1/getMergeQueueMetrics
+sources:
+  - url: https://docs.trunk.io/references/apis
+    type: APIReference
+    note: API overview - REST API authenticated via the x-api-token header; references Flaky Tests API and Merge API.
+  - url: https://docs.trunk.io/flaky-tests/reference/api-reference
+    type: APIReference
+    note: Flaky Tests REST endpoints (get-test-details, list-quarantined-tests, list-unhealthy-tests, list-failing-tests, link-ticket-to-test-case).
+  - url: https://docs.trunk.io/merge-queue/reference/merge
+    type: APIReference
+    note: Merge Queue REST endpoints under https://api.trunk.io/v1; all HTTPS, no WebSocket.
+  - url: https://docs.trunk.io/flaky-tests/webhooks
+    type: Documentation
+    note: Webhooks delivered via Svix; event-driven surface is outbound HTTP callbacks, not WebSocket/SSE.
+  - url: https://docs.trunk.io/flaky-tests/uploader
+    type: Documentation
+    note: Test results uploaded via trunk-analytics-cli and processed periodically (non-realtime); no streaming transport.
+actions:
+  asyncapiPath: null
+  apisYmlUpdated: true
+  reason: |
+    No WebSocket or SSE protocol surface exists. The only event-driven surface
+    is outbound Svix webhooks, which are described in apis.yml as a Webhooks
+    API rather than modeled as an AsyncAPI channel in this pass. No AsyncAPI
+    document was authored.

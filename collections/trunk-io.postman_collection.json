@@ -1,0 +1,399 @@
+{
+  "item": [
+    {
+      "name": "Flaky Tests",
+      "description": {
+        "content": "Trunk Flaky Tests REST API.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "name": "Get the details of a test case",
+          "request": {
+            "name": "Get the details of a test case",
+            "url": {
+              "raw": "{{baseUrl}}/v1/flaky-tests/get-test-details",
+              "host": ["{{baseUrl}}"],
+              "path": ["v1", "flaky-tests", "get-test-details"]
+            },
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Accept", "value": "application/json" }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"repo\": {\n    \"host\": \"github.com\",\n    \"owner\": \"my-org\",\n    \"name\": \"my-repo\"\n  },\n  \"org_url_slug\": \"my-trunk-org-slug\",\n  \"test_id\": \"01234567-0123-0123-0123-0123456789ab\"\n}",
+              "options": { "raw": { "language": "json" } }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get a list of quarantined tests",
+          "request": {
+            "name": "Get a list of quarantined tests",
+            "url": {
+              "raw": "{{baseUrl}}/v1/flaky-tests/list-quarantined-tests",
+              "host": ["{{baseUrl}}"],
+              "path": ["v1", "flaky-tests", "list-quarantined-tests"]
+            },
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Accept", "value": "application/json" }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"repo\": {\n    \"host\": \"github.com\",\n    \"owner\": \"my-org\",\n    \"name\": \"my-repo\"\n  },\n  \"org_url_slug\": \"my-trunk-org-slug\",\n  \"page_query\": {\n    \"page_size\": 50\n  }\n}",
+              "options": { "raw": { "language": "json" } }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get a list of unhealthy tests",
+          "request": {
+            "name": "Get a list of unhealthy tests",
+            "url": {
+              "raw": "{{baseUrl}}/v1/flaky-tests/list-unhealthy-tests",
+              "host": ["{{baseUrl}}"],
+              "path": ["v1", "flaky-tests", "list-unhealthy-tests"]
+            },
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Accept", "value": "application/json" }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"repo\": {\n    \"host\": \"github.com\",\n    \"owner\": \"my-org\",\n    \"name\": \"my-repo\"\n  },\n  \"org_url_slug\": \"my-trunk-org-slug\",\n  \"status\": \"FLAKY\",\n  \"page_query\": {\n    \"page_size\": 50\n  }\n}",
+              "options": { "raw": { "language": "json" } }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get a list of distinct tests that failed in the given time range",
+          "request": {
+            "name": "Get a list of distinct tests that failed in the given time range",
+            "url": {
+              "raw": "{{baseUrl}}/v1/flaky-tests/list-failing-tests",
+              "host": ["{{baseUrl}}"],
+              "path": ["v1", "flaky-tests", "list-failing-tests"]
+            },
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Accept", "value": "application/json" }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"repo\": {\n    \"host\": \"github.com\",\n    \"owner\": \"my-org\",\n    \"name\": \"my-repo\"\n  },\n  \"org_url_slug\": \"my-trunk-org-slug\",\n  \"start_time\": \"2026-06-01T00:00:00Z\",\n  \"end_time\": \"2026-06-20T00:00:00Z\",\n  \"page_query\": {\n    \"page_size\": 50\n  }\n}",
+              "options": { "raw": { "language": "json" } }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Link a ticket to a test case",
+          "request": {
+            "name": "Link a ticket to a test case",
+            "url": {
+              "raw": "{{baseUrl}}/v1/flaky-tests/link-ticket-to-test-case",
+              "host": ["{{baseUrl}}"],
+              "path": ["v1", "flaky-tests", "link-ticket-to-test-case"]
+            },
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Accept", "value": "application/json" }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"repo\": {\n    \"host\": \"github.com\",\n    \"owner\": \"my-org\",\n    \"name\": \"my-repo\"\n  },\n  \"test_case_id\": \"01234567-0123-0123-0123-0123456789ab\",\n  \"external_ticket_id\": \"KAN-123\"\n}",
+              "options": { "raw": { "language": "json" } }
+            }
+          },
+          "response": []
+        }
+      ],
+      "event": []
+    },
+    {
+      "name": "Merge Queue",
+      "description": {
+        "content": "Trunk Merge Queue REST API.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "name": "Submit a pull request",
+          "request": {
+            "name": "Submit a pull request",
+            "url": {
+              "raw": "{{baseUrl}}/v1/submitPullRequest",
+              "host": ["{{baseUrl}}"],
+              "path": ["v1", "submitPullRequest"]
+            },
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Accept", "value": "application/json" }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"repo\": {\n    \"host\": \"github.com\",\n    \"owner\": \"my-org\",\n    \"name\": \"my-repo\"\n  },\n  \"targetBranch\": \"main\",\n  \"pr\": {\n    \"number\": 1234\n  }\n}",
+              "options": { "raw": { "language": "json" } }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Cancel a pull request",
+          "request": {
+            "name": "Cancel a pull request",
+            "url": {
+              "raw": "{{baseUrl}}/v1/cancelPullRequest",
+              "host": ["{{baseUrl}}"],
+              "path": ["v1", "cancelPullRequest"]
+            },
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Accept", "value": "application/json" }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"repo\": {\n    \"host\": \"github.com\",\n    \"owner\": \"my-org\",\n    \"name\": \"my-repo\"\n  },\n  \"targetBranch\": \"main\",\n  \"pr\": {\n    \"number\": 1234\n  }\n}",
+              "options": { "raw": { "language": "json" } }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get a submitted pull request",
+          "request": {
+            "name": "Get a submitted pull request",
+            "url": {
+              "raw": "{{baseUrl}}/v1/getSubmittedPullRequest",
+              "host": ["{{baseUrl}}"],
+              "path": ["v1", "getSubmittedPullRequest"]
+            },
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Accept", "value": "application/json" }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"repo\": {\n    \"host\": \"github.com\",\n    \"owner\": \"my-org\",\n    \"name\": \"my-repo\"\n  },\n  \"targetBranch\": \"main\",\n  \"pr\": {\n    \"number\": 1234\n  }\n}",
+              "options": { "raw": { "language": "json" } }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Restart tests on a pull request",
+          "request": {
+            "name": "Restart tests on a pull request",
+            "url": {
+              "raw": "{{baseUrl}}/v1/restartTestsOnPullRequest",
+              "host": ["{{baseUrl}}"],
+              "path": ["v1", "restartTestsOnPullRequest"]
+            },
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Accept", "value": "application/json" }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"repo\": {\n    \"host\": \"github.com\",\n    \"owner\": \"my-org\",\n    \"name\": \"my-repo\"\n  },\n  \"targetBranch\": \"main\",\n  \"pr\": {\n    \"number\": 1234\n  }\n}",
+              "options": { "raw": { "language": "json" } }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Set impacted targets",
+          "request": {
+            "name": "Set impacted targets",
+            "url": {
+              "raw": "{{baseUrl}}/v1/setImpactedTargets",
+              "host": ["{{baseUrl}}"],
+              "path": ["v1", "setImpactedTargets"]
+            },
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Accept", "value": "application/json" }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"repo\": {\n    \"host\": \"github.com\",\n    \"owner\": \"my-org\",\n    \"name\": \"my-repo\"\n  },\n  \"targetBranch\": \"main\",\n  \"pr\": {\n    \"number\": 1234\n  },\n  \"impactedTargets\": [\"//app:test\"]\n}",
+              "options": { "raw": { "language": "json" } }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get merge queue testing details",
+          "request": {
+            "name": "Get merge queue testing details",
+            "url": {
+              "raw": "{{baseUrl}}/v1/getMergeQueueTestingDetails",
+              "host": ["{{baseUrl}}"],
+              "path": ["v1", "getMergeQueueTestingDetails"]
+            },
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Accept", "value": "application/json" }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"repo\": {\n    \"host\": \"github.com\",\n    \"owner\": \"my-org\",\n    \"name\": \"my-repo\"\n  },\n  \"targetBranch\": \"main\"\n}",
+              "options": { "raw": { "language": "json" } }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create a queue",
+          "request": {
+            "name": "Create a queue",
+            "url": {
+              "raw": "{{baseUrl}}/v1/createQueue",
+              "host": ["{{baseUrl}}"],
+              "path": ["v1", "createQueue"]
+            },
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Accept", "value": "application/json" }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"repo\": {\n    \"host\": \"github.com\",\n    \"owner\": \"my-org\",\n    \"name\": \"my-repo\"\n  },\n  \"targetBranch\": \"main\"\n}",
+              "options": { "raw": { "language": "json" } }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get a queue",
+          "request": {
+            "name": "Get a queue",
+            "url": {
+              "raw": "{{baseUrl}}/v1/getQueue",
+              "host": ["{{baseUrl}}"],
+              "path": ["v1", "getQueue"]
+            },
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Accept", "value": "application/json" }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"repo\": {\n    \"host\": \"github.com\",\n    \"owner\": \"my-org\",\n    \"name\": \"my-repo\"\n  },\n  \"targetBranch\": \"main\"\n}",
+              "options": { "raw": { "language": "json" } }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update a queue",
+          "request": {
+            "name": "Update a queue",
+            "url": {
+              "raw": "{{baseUrl}}/v1/updateQueue",
+              "host": ["{{baseUrl}}"],
+              "path": ["v1", "updateQueue"]
+            },
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Accept", "value": "application/json" }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"repo\": {\n    \"host\": \"github.com\",\n    \"owner\": \"my-org\",\n    \"name\": \"my-repo\"\n  },\n  \"targetBranch\": \"main\"\n}",
+              "options": { "raw": { "language": "json" } }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete a queue",
+          "request": {
+            "name": "Delete a queue",
+            "url": {
+              "raw": "{{baseUrl}}/v1/deleteQueue",
+              "host": ["{{baseUrl}}"],
+              "path": ["v1", "deleteQueue"]
+            },
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Accept", "value": "application/json" }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"repo\": {\n    \"host\": \"github.com\",\n    \"owner\": \"my-org\",\n    \"name\": \"my-repo\"\n  },\n  \"targetBranch\": \"main\"\n}",
+              "options": { "raw": { "language": "json" } }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get merge queue metrics",
+          "request": {
+            "name": "Get merge queue metrics",
+            "url": {
+              "raw": "{{baseUrl}}/v1/getMergeQueueMetrics?repo=my-repo&repoHost=github.com",
+              "host": ["{{baseUrl}}"],
+              "path": ["v1", "getMergeQueueMetrics"],
+              "query": [
+                { "key": "repo", "value": "my-repo" },
+                { "key": "repoHost", "value": "github.com" }
+              ]
+            },
+            "header": [
+              { "key": "Accept", "value": "text/plain" }
+            ],
+            "method": "GET"
+          },
+          "response": []
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.trunk.io",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      { "key": "key", "value": "x-api-token" },
+      { "key": "value", "value": "{{apiToken}}" },
+      { "key": "in", "value": "header" }
+    ]
+  },
+  "info": {
+    "_postman_id": "b7e1f2a4-3c5d-4e6f-9a8b-1c2d3e4f5a6b",
+    "name": "Trunk API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "HTTP REST API for the Trunk platform - Flaky Tests API and Merge Queue API. Authenticated with the x-api-token header.\n\nDocs: https://docs.trunk.io/references/apis",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,12 +1,10 @@
 aid: trunk
 name: Trunk
-description: >-
-  Trunk builds developer experience and CI reliability tooling. Its platform spans
-  Code Quality (a meta-linter and static analysis manager driven by the trunk CLI),
-  a flake-aware parallel Merge Queue, and Flaky Tests detection / CI Analytics. Test
-  results are uploaded from CI via the Trunk Analytics CLI / GitHub Action, and an
-  HTTP REST API at api.trunk.io exposes Flaky Tests and Merge Queue control plus
-  Svix-powered outbound webhooks. Trunk is a portfolio company of a16z.
+description: Trunk builds developer experience and CI reliability tooling. Its platform spans Code Quality
+  (a meta-linter and static analysis manager driven by the trunk CLI), a flake-aware parallel Merge Queue,
+  and Flaky Tests detection / CI Analytics. Test results are uploaded from CI via the Trunk Analytics
+  CLI / GitHub Action, and an HTTP REST API at api.trunk.io exposes Flaky Tests and Merge Queue control
+  plus Svix-powered outbound webhooks. Trunk is a portfolio company of a16z.
 accessModel:
   pricing: unknown
   onboarding: self-serve
@@ -28,12 +26,11 @@ x-backed-by:
 x-tier: stub
 x-tier-reason: portfolio-lead
 x-canonical: trunk-io
-x-canonical-note: >-
-  This record duplicates the canonical, more fully enriched provider at
-  all/trunk-io (same company, Trunk.io). Candidate for dedupe.
+x-canonical-note: This record duplicates the canonical, more fully enriched provider at all/trunk-io (same
+  company, Trunk.io). Candidate for dedupe.
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-21'
+modified: '2026-08-08'
 tags:
 - Developer Tools
 - CI/CD
@@ -53,9 +50,8 @@ apis:
   image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
   humanURL: https://docs.trunk.io/flaky-tests/uploader
   baseURL: https://api.trunk.io
-  description: >-
-    CI test-result ingestion surface. The trunk-analytics-cli (and the trunk-io/analytics-uploader GitHub
-    Action) uploads JUnit XML, Bazel BEP, and XCResult test reports to Trunk for flaky-test detection,
+  description: CI test-result ingestion surface. The trunk-analytics-cli (and the trunk-io/analytics-uploader
+    GitHub Action) uploads JUnit XML, Bazel BEP, and XCResult test reports to Trunk for flaky-test detection,
     authenticated with an organization slug (--org-url-slug) and API token (--token / TRUNK_API_TOKEN).
   properties:
   - url: https://docs.trunk.io/flaky-tests/uploader
@@ -71,10 +67,9 @@ apis:
   image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
   humanURL: https://docs.trunk.io/flaky-tests/webhooks
   baseURL: https://api.trunk.io
-  description: >-
-    Svix-powered outbound webhooks for subscribing to Flaky Tests events (test_case.status_changed, test_case.monitor_status_changed,
-    test_case.investigation_completed) and Merge Queue events (pull_request.* and pull_request_batch.*).
-    Used to trigger downstream workflows like GitHub Issues.
+  description: Svix-powered outbound webhooks for subscribing to Flaky Tests events (test_case.status_changed,
+    test_case.monitor_status_changed, test_case.investigation_completed) and Merge Queue events (pull_request.*
+    and pull_request_batch.*). Used to trigger downstream workflows like GitHub Issues.
   properties:
   - url: https://docs.trunk.io/flaky-tests/webhooks
     type: Documentation
@@ -89,11 +84,10 @@ apis:
   image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
   humanURL: https://docs.trunk.io/code-quality
   baseURL: https://docs.trunk.io/code-quality
-  description: >-
-    Meta-linter and static analysis manager exposed through the trunk CLI and a local daemon (no public
-    REST API). Commands include trunk init, trunk check, and trunk check --all; it hermetically installs
-    and runs third-party linters, formatters, and security scanners, operating in Hold The Line mode by
-    default and serving real-time annotations to IDE extensions.
+  description: Meta-linter and static analysis manager exposed through the trunk CLI and a local daemon
+    (no public REST API). Commands include trunk init, trunk check, and trunk check --all; it hermetically
+    installs and runs third-party linters, formatters, and security scanners, operating in Hold The Line
+    mode by default and serving real-time annotations to IDE extensions.
   properties:
   - url: https://docs.trunk.io/code-quality
     type: Documentation
@@ -178,6 +172,12 @@ common:
   url: security/trunk-vulnerability-disclosure.yml
 - type: Security
   url: https://trunk.io/security
+- type: Plans
+  url: plans/trunk-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/trunk-rate-limits.yml
+- type: FinOps
+  url: finops/trunk-finops.yml
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
@@ -188,3 +188,5 @@ x-enrichment:
   status: enriched
   artifacts_added: 15
   pass: local-v1
+x-merged-from:
+- trunk-io

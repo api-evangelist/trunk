@@ -1,0 +1,269 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Trunk API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "x-api-token",
+      "value": "{{apiToken}}",
+      "in": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Flaky Tests",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get the details of a test case",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.trunk.io/v1/flaky-tests/get-test-details",
+            "body": {
+              "type": "json",
+              "data": "{\n  \"repo\": {\n    \"host\": \"github.com\",\n    \"owner\": \"my-org\",\n    \"name\": \"my-repo\"\n  },\n  \"org_url_slug\": \"my-trunk-org-slug\",\n  \"test_id\": \"01234567-0123-0123-0123-0123456789ab\"\n}"
+            }
+          },
+          "docs": "Fetch detailed metadata for a single test case, including status, failure rates, common failures, codeowners, and quarantine state."
+        },
+        {
+          "info": {
+            "name": "Get a list of quarantined tests",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.trunk.io/v1/flaky-tests/list-quarantined-tests",
+            "body": {
+              "type": "json",
+              "data": "{\n  \"repo\": {\n    \"host\": \"github.com\",\n    \"owner\": \"my-org\",\n    \"name\": \"my-repo\"\n  },\n  \"org_url_slug\": \"my-trunk-org-slug\",\n  \"page_query\": {\n    \"page_size\": 50\n  }\n}"
+            }
+          },
+          "docs": "List tests currently quarantined in a repository, with pagination."
+        },
+        {
+          "info": {
+            "name": "Get a list of unhealthy tests",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.trunk.io/v1/flaky-tests/list-unhealthy-tests",
+            "body": {
+              "type": "json",
+              "data": "{\n  \"repo\": {\n    \"host\": \"github.com\",\n    \"owner\": \"my-org\",\n    \"name\": \"my-repo\"\n  },\n  \"org_url_slug\": \"my-trunk-org-slug\",\n  \"status\": \"FLAKY\",\n  \"page_query\": {\n    \"page_size\": 50\n  }\n}"
+            }
+          },
+          "docs": "List unhealthy tests filtered by status (FLAKY or BROKEN), with pagination."
+        },
+        {
+          "info": {
+            "name": "Get a list of distinct tests that failed in the given time range",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.trunk.io/v1/flaky-tests/list-failing-tests",
+            "body": {
+              "type": "json",
+              "data": "{\n  \"repo\": {\n    \"host\": \"github.com\",\n    \"owner\": \"my-org\",\n    \"name\": \"my-repo\"\n  },\n  \"org_url_slug\": \"my-trunk-org-slug\",\n  \"start_time\": \"2026-06-01T00:00:00Z\",\n  \"end_time\": \"2026-06-20T00:00:00Z\",\n  \"page_query\": {\n    \"page_size\": 50\n  }\n}"
+            }
+          },
+          "docs": "List distinct tests that failed within an inclusive start / exclusive end time range, with pagination."
+        },
+        {
+          "info": {
+            "name": "Link a ticket to a test case",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.trunk.io/v1/flaky-tests/link-ticket-to-test-case",
+            "body": {
+              "type": "json",
+              "data": "{\n  \"repo\": {\n    \"host\": \"github.com\",\n    \"owner\": \"my-org\",\n    \"name\": \"my-repo\"\n  },\n  \"test_case_id\": \"01234567-0123-0123-0123-0123456789ab\",\n  \"external_ticket_id\": \"KAN-123\"\n}"
+            }
+          },
+          "docs": "Associate an external Jira/Linear ticket with a Trunk test case."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Merge Queue",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Submit a pull request",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.trunk.io/v1/submitPullRequest",
+            "body": {
+              "type": "json",
+              "data": "{\n  \"repo\": {\n    \"host\": \"github.com\",\n    \"owner\": \"my-org\",\n    \"name\": \"my-repo\"\n  },\n  \"targetBranch\": \"main\",\n  \"pr\": {\n    \"number\": 1234\n  }\n}"
+            }
+          },
+          "docs": "Submit a pull request to the merge queue."
+        },
+        {
+          "info": {
+            "name": "Cancel a pull request",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.trunk.io/v1/cancelPullRequest",
+            "body": {
+              "type": "json",
+              "data": "{\n  \"repo\": {\n    \"host\": \"github.com\",\n    \"owner\": \"my-org\",\n    \"name\": \"my-repo\"\n  },\n  \"targetBranch\": \"main\",\n  \"pr\": {\n    \"number\": 1234\n  }\n}"
+            }
+          },
+          "docs": "Cancel a pull request in the merge queue."
+        },
+        {
+          "info": {
+            "name": "Get a submitted pull request",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.trunk.io/v1/getSubmittedPullRequest",
+            "body": {
+              "type": "json",
+              "data": "{\n  \"repo\": {\n    \"host\": \"github.com\",\n    \"owner\": \"my-org\",\n    \"name\": \"my-repo\"\n  },\n  \"targetBranch\": \"main\",\n  \"pr\": {\n    \"number\": 1234\n  }\n}"
+            }
+          },
+          "docs": "Get the state of a submitted pull request (NOT_READY, PENDING, TESTING, TESTS_PASSED, MERGED, FAILED, CANCELLED, PENDING_FAILURE)."
+        },
+        {
+          "info": {
+            "name": "Restart tests on a pull request",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.trunk.io/v1/restartTestsOnPullRequest",
+            "body": {
+              "type": "json",
+              "data": "{\n  \"repo\": {\n    \"host\": \"github.com\",\n    \"owner\": \"my-org\",\n    \"name\": \"my-repo\"\n  },\n  \"targetBranch\": \"main\",\n  \"pr\": {\n    \"number\": 1234\n  }\n}"
+            }
+          },
+          "docs": "Restart tests on a pull request in the merge queue."
+        },
+        {
+          "info": {
+            "name": "Set impacted targets",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.trunk.io/v1/setImpactedTargets",
+            "body": {
+              "type": "json",
+              "data": "{\n  \"repo\": {\n    \"host\": \"github.com\",\n    \"owner\": \"my-org\",\n    \"name\": \"my-repo\"\n  },\n  \"targetBranch\": \"main\",\n  \"pr\": {\n    \"number\": 1234\n  },\n  \"impactedTargets\": [\"//app:test\"]\n}"
+            }
+          },
+          "docs": "Set the impacted build/test targets for a pull request."
+        },
+        {
+          "info": {
+            "name": "Get merge queue testing details",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.trunk.io/v1/getMergeQueueTestingDetails",
+            "body": {
+              "type": "json",
+              "data": "{\n  \"repo\": {\n    \"host\": \"github.com\",\n    \"owner\": \"my-org\",\n    \"name\": \"my-repo\"\n  },\n  \"targetBranch\": \"main\"\n}"
+            }
+          },
+          "docs": "Get in-progress merge queue testing details."
+        },
+        {
+          "info": {
+            "name": "Create a queue",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.trunk.io/v1/createQueue",
+            "body": {
+              "type": "json",
+              "data": "{\n  \"repo\": {\n    \"host\": \"github.com\",\n    \"owner\": \"my-org\",\n    \"name\": \"my-repo\"\n  },\n  \"targetBranch\": \"main\"\n}"
+            }
+          },
+          "docs": "Create a merge queue for a target branch."
+        },
+        {
+          "info": {
+            "name": "Get a queue",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.trunk.io/v1/getQueue",
+            "body": {
+              "type": "json",
+              "data": "{\n  \"repo\": {\n    \"host\": \"github.com\",\n    \"owner\": \"my-org\",\n    \"name\": \"my-repo\"\n  },\n  \"targetBranch\": \"main\"\n}"
+            }
+          },
+          "docs": "Get a merge queue and its state (RUNNING, PAUSED, DRAINING, SWITCHING_MODES)."
+        },
+        {
+          "info": {
+            "name": "Update a queue",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.trunk.io/v1/updateQueue",
+            "body": {
+              "type": "json",
+              "data": "{\n  \"repo\": {\n    \"host\": \"github.com\",\n    \"owner\": \"my-org\",\n    \"name\": \"my-repo\"\n  },\n  \"targetBranch\": \"main\"\n}"
+            }
+          },
+          "docs": "Update a merge queue configuration."
+        },
+        {
+          "info": {
+            "name": "Delete a queue",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.trunk.io/v1/deleteQueue",
+            "body": {
+              "type": "json",
+              "data": "{\n  \"repo\": {\n    \"host\": \"github.com\",\n    \"owner\": \"my-org\",\n    \"name\": \"my-repo\"\n  },\n  \"targetBranch\": \"main\"\n}"
+            }
+          },
+          "docs": "Delete a merge queue."
+        },
+        {
+          "info": {
+            "name": "Get merge queue metrics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.trunk.io/v1/getMergeQueueMetrics?repo=my-repo&repoHost=github.com"
+          },
+          "docs": "Get merge queue metrics in Prometheus text exposition format."
+        }
+      ]
+    }
+  ]
+}
