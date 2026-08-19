@@ -1,0 +1,1438 @@
+{
+  "item": [
+    {
+      "id": "e9b12de9-4669-430f-94dd-5ecc4e4b581e",
+      "name": "Flaky Tests",
+      "description": {
+        "content": "Query Flaky Tests state and link tickets.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "24e96bb6-ec53-4b75-ba58-0a2e3703b645",
+          "name": "Get the details of a test case",
+          "request": {
+            "name": "Get the details of a test case",
+            "description": {
+              "content": "Fetch detailed metadata for a single test case, including its current status, recent failure rates, most common failures, codeowners, and quarantine state.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "flaky-tests",
+                "get-test-details"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"repo\": {\n    \"host\": \"<string>\",\n    \"owner\": \"<string>\",\n    \"name\": \"<string>\"\n  },\n  \"org_url_slug\": \"<string>\",\n  \"test_id\": \"<uuid>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "2e1a9803-98da-4613-b0c1-e99c9842c0df",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "flaky-tests",
+                    "get-test-details"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"repo\": {\n    \"host\": \"github.com\",\n    \"owner\": \"my-org\",\n    \"name\": \"my-repo\"\n  },\n  \"org_url_slug\": \"my-trunk-org-slug\",\n  \"test_id\": \"<uuid>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"test\": {\n    \"id\": \"68c94844-fabd-ba6d-977d-4df9a210fec2\",\n    \"name\": \"string\",\n    \"variant\": \"string\",\n    \"classname\": \"string\",\n    \"file_path\": \"string\",\n    \"status\": {\n      \"value\": \"HEALTHY\",\n      \"reason\": \"string\",\n      \"timestamp\": \"1958-07-23T00:13:03.862Z\"\n    },\n    \"failure_rate_last_7d\": 6623.2910340583785,\n    \"failure_rate_last_24h\": 2171.311955206685,\n    \"most_common_failures\": [\n      {\n        \"summary\": \"string\",\n        \"count\": 3359\n      },\n      {\n        \"summary\": \"string\",\n        \"count\": 4476\n      }\n    ],\n    \"quarantined\": true,\n    \"codeowners\": [\n      \"string\",\n      \"string\"\n    ],\n    \"pull_requests_impacted_last_7d\": 7728,\n    \"html_url\": \"string\",\n    \"ticket\": {\n      \"html_url\": \"string\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8d8ff7a7-d94d-45a1-ac24-73acdd12c0a5",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "flaky-tests",
+                    "get-test-details"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"repo\": {\n    \"host\": \"github.com\",\n    \"owner\": \"my-org\",\n    \"name\": \"my-repo\"\n  },\n  \"org_url_slug\": \"my-trunk-org-slug\",\n  \"test_id\": \"<uuid>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "450a9804-3ed6-482d-92e6-c72e25dd08f5",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "flaky-tests",
+                    "get-test-details"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"repo\": {\n    \"host\": \"github.com\",\n    \"owner\": \"my-org\",\n    \"name\": \"my-repo\"\n  },\n  \"org_url_slug\": \"my-trunk-org-slug\",\n  \"test_id\": \"<uuid>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a3116c1d-b185-4d2d-acf1-4f8b276bbb3d",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "flaky-tests",
+                    "get-test-details"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"repo\": {\n    \"host\": \"github.com\",\n    \"owner\": \"my-org\",\n    \"name\": \"my-repo\"\n  },\n  \"org_url_slug\": \"my-trunk-org-slug\",\n  \"test_id\": \"<uuid>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e3fe908e-7be6-4843-b1a0-d5611f5c1c7f",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "flaky-tests",
+                    "get-test-details"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"repo\": {\n    \"host\": \"github.com\",\n    \"owner\": \"my-org\",\n    \"name\": \"my-repo\"\n  },\n  \"org_url_slug\": \"my-trunk-org-slug\",\n  \"test_id\": \"<uuid>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e930a559-ba7b-4528-b473-edf63428e1dc",
+          "name": "Get a list of quarantined tests",
+          "request": {
+            "name": "Get a list of quarantined tests",
+            "description": {
+              "content": "List tests currently quarantined in a repository, with pagination.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "flaky-tests",
+                "list-quarantined-tests"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"repo\": {\n    \"host\": \"<string>\",\n    \"owner\": \"<string>\",\n    \"name\": \"<string>\"\n  },\n  \"org_url_slug\": \"<string>\",\n  \"page_query\": {\n    \"page_size\": \"<integer>\",\n    \"page_token\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a8f9c806-055a-42e8-a2e7-1d7749284224",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "flaky-tests",
+                    "list-quarantined-tests"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"repo\": {\n    \"host\": \"github.com\",\n    \"owner\": \"my-org\",\n    \"name\": \"my-repo\"\n  },\n  \"org_url_slug\": \"<string>\",\n  \"page_query\": {\n    \"page_size\": \"<integer>\",\n    \"page_token\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"quarantined_tests\": [\n    {\n      \"id\": \"8ba258ff-3502-2dd4-d180-06baed606462\",\n      \"name\": \"string\",\n      \"variant\": \"string\",\n      \"classname\": \"string\",\n      \"file_path\": \"string\",\n      \"status\": {\n        \"value\": \"FLAKY\",\n        \"reason\": \"string\",\n        \"timestamp\": \"1959-04-08T08:15:58.427Z\"\n      },\n      \"failure_rate_last_7d\": 8487.318683960671,\n      \"failure_rate_last_24h\": 6113.384841590221,\n      \"most_common_failures\": [\n        {\n          \"summary\": \"string\",\n          \"count\": 2778\n        },\n        {\n          \"summary\": \"string\",\n          \"count\": 1613\n        }\n      ],\n      \"quarantined\": false,\n      \"codeowners\": [\n        \"string\",\n        \"string\"\n      ],\n      \"pull_requests_impacted_last_7d\": 5724,\n      \"html_url\": \"string\",\n      \"ticket\": {\n        \"html_url\": \"string\"\n      }\n    },\n    {\n      \"id\": \"31c720c1-a9dd-c590-c031-4f695d12ab65\",\n      \"name\": \"string\",\n      \"variant\": \"string\",\n      \"classname\": \"string\",\n      \"file_path\": \"string\",\n      \"status\": {\n        \"value\": \"HEALTHY\",\n        \"reason\": \"string\",\n        \"timestamp\": \"1987-07-28T12:19:59.779Z\"\n      },\n      \"failure_rate_last_7d\": 2898.4064499635597,\n      \"failure_rate_last_24h\": 3877.7335122125824,\n      \"most_common_failures\": [\n        {\n          \"summary\": \"string\",\n          \"count\": 255\n        },\n        {\n          \"summary\": \"string\",\n          \"count\": 5186\n        }\n      ],\n      \"quarantined\": false,\n      \"codeowners\": [\n        \"string\",\n        \"string\"\n      ],\n      \"pull_requests_impacted_last_7d\": 7210,\n      \"html_url\": \"string\",\n      \"ticket\": {\n        \"html_url\": \"string\"\n      }\n    }\n  ],\n  \"page\": {\n    \"total_rows\": 4082,\n    \"total_pages\": 7463,\n    \"page_index\": 9078,\n    \"next_page_token\": \"string\",\n    \"prev_page_token\": \"string\",\n    \"last_page_token\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e286b8a1-133d-45be-b727-da8821db37cc",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "flaky-tests",
+                    "list-quarantined-tests"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"repo\": {\n    \"host\": \"github.com\",\n    \"owner\": \"my-org\",\n    \"name\": \"my-repo\"\n  },\n  \"org_url_slug\": \"<string>\",\n  \"page_query\": {\n    \"page_size\": \"<integer>\",\n    \"page_token\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bd83d8cb-62c4-424b-90f4-9ce987767d47",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "flaky-tests",
+                    "list-quarantined-tests"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"repo\": {\n    \"host\": \"github.com\",\n    \"owner\": \"my-org\",\n    \"name\": \"my-repo\"\n  },\n  \"org_url_slug\": \"<string>\",\n  \"page_query\": {\n    \"page_size\": \"<integer>\",\n    \"page_token\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a6fb0988-9d84-4446-8f21-66e22241e747",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "flaky-tests",
+                    "list-quarantined-tests"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"repo\": {\n    \"host\": \"github.com\",\n    \"owner\": \"my-org\",\n    \"name\": \"my-repo\"\n  },\n  \"org_url_slug\": \"<string>\",\n  \"page_query\": {\n    \"page_size\": \"<integer>\",\n    \"page_token\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9c57459d-70cc-4319-8813-4e88a2382b86",
+          "name": "Get a list of unhealthy tests",
+          "request": {
+            "name": "Get a list of unhealthy tests",
+            "description": {
+              "content": "List unhealthy tests in a repository, filtered by status (FLAKY or BROKEN), with pagination.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "flaky-tests",
+                "list-unhealthy-tests"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"repo\": {\n    \"host\": \"<string>\",\n    \"owner\": \"<string>\",\n    \"name\": \"<string>\"\n  },\n  \"org_url_slug\": \"<string>\",\n  \"page_query\": {\n    \"page_size\": \"<integer>\",\n    \"page_token\": \"<string>\"\n  },\n  \"status\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c8f907a9-01cb-45b9-ac30-4be39eab89d4",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "flaky-tests",
+                    "list-unhealthy-tests"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"repo\": {\n    \"host\": \"github.com\",\n    \"owner\": \"my-org\",\n    \"name\": \"my-repo\"\n  },\n  \"org_url_slug\": \"<string>\",\n  \"page_query\": {\n    \"page_size\": \"<integer>\",\n    \"page_token\": \"<string>\"\n  },\n  \"status\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"tests\": [\n    {\n      \"id\": \"219f41e7-1c73-e87c-f4a4-ed841a80154b\",\n      \"name\": \"string\",\n      \"variant\": \"string\",\n      \"classname\": \"string\",\n      \"file_path\": \"string\",\n      \"status\": {\n        \"value\": \"HEALTHY\",\n        \"reason\": \"string\",\n        \"timestamp\": \"2007-11-03T07:07:45.248Z\"\n      },\n      \"failure_rate_last_7d\": 3220.824328103934,\n      \"failure_rate_last_24h\": 6219.630005222203,\n      \"most_common_failures\": [\n        {\n          \"summary\": \"string\",\n          \"count\": 1168\n        },\n        {\n          \"summary\": \"string\",\n          \"count\": 7866\n        }\n      ],\n      \"quarantined\": false,\n      \"codeowners\": [\n        \"string\",\n        \"string\"\n      ],\n      \"pull_requests_impacted_last_7d\": 8879,\n      \"html_url\": \"string\",\n      \"ticket\": {\n        \"html_url\": \"string\"\n      }\n    },\n    {\n      \"id\": \"8f708d3d-3712-7ef9-a7a0-e5689a93239e\",\n      \"name\": \"string\",\n      \"variant\": \"string\",\n      \"classname\": \"string\",\n      \"file_path\": \"string\",\n      \"status\": {\n        \"value\": \"HEALTHY\",\n        \"reason\": \"string\",\n        \"timestamp\": \"1961-02-13T08:15:39.868Z\"\n      },\n      \"failure_rate_last_7d\": 4900.286222638609,\n      \"failure_rate_last_24h\": 2159.9530750243757,\n      \"most_common_failures\": [\n        {\n          \"summary\": \"string\",\n          \"count\": 5590\n        },\n        {\n          \"summary\": \"string\",\n          \"count\": 2064\n        }\n      ],\n      \"quarantined\": false,\n      \"codeowners\": [\n        \"string\",\n        \"string\"\n      ],\n      \"pull_requests_impacted_last_7d\": 1456,\n      \"html_url\": \"string\",\n      \"ticket\": {\n        \"html_url\": \"string\"\n      }\n    }\n  ],\n  \"page\": {\n    \"total_rows\": 1974,\n    \"total_pages\": 5717,\n    \"page_index\": 9672,\n    \"next_page_token\": \"string\",\n    \"prev_page_token\": \"string\",\n    \"last_page_token\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "72981fdf-0f5f-4e75-81ee-fbe347047b8d",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "flaky-tests",
+                    "list-unhealthy-tests"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"repo\": {\n    \"host\": \"github.com\",\n    \"owner\": \"my-org\",\n    \"name\": \"my-repo\"\n  },\n  \"org_url_slug\": \"<string>\",\n  \"page_query\": {\n    \"page_size\": \"<integer>\",\n    \"page_token\": \"<string>\"\n  },\n  \"status\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f4f21338-7765-4310-b9da-b1bb0e53983b",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "flaky-tests",
+                    "list-unhealthy-tests"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"repo\": {\n    \"host\": \"github.com\",\n    \"owner\": \"my-org\",\n    \"name\": \"my-repo\"\n  },\n  \"org_url_slug\": \"<string>\",\n  \"page_query\": {\n    \"page_size\": \"<integer>\",\n    \"page_token\": \"<string>\"\n  },\n  \"status\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ca552071-0893-43c7-a807-a14915974a2e",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "flaky-tests",
+                    "list-unhealthy-tests"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"repo\": {\n    \"host\": \"github.com\",\n    \"owner\": \"my-org\",\n    \"name\": \"my-repo\"\n  },\n  \"org_url_slug\": \"<string>\",\n  \"page_query\": {\n    \"page_size\": \"<integer>\",\n    \"page_token\": \"<string>\"\n  },\n  \"status\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "23e41b07-bc30-4334-8534-2dd902739b9b",
+          "name": "Get a list of distinct tests that failed in the given time range",
+          "request": {
+            "name": "Get a list of distinct tests that failed in the given time range",
+            "description": {
+              "content": "List distinct tests that failed within an inclusive start / exclusive end time range, with pagination.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "flaky-tests",
+                "list-failing-tests"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"repo\": {\n    \"host\": \"<string>\",\n    \"owner\": \"<string>\",\n    \"name\": \"<string>\"\n  },\n  \"org_url_slug\": \"<string>\",\n  \"start_time\": \"<dateTime>\",\n  \"end_time\": \"<dateTime>\",\n  \"page_query\": {\n    \"page_size\": \"<integer>\",\n    \"page_token\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "fb3c0be3-32d7-46b2-8702-e773e8c1acd8",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "flaky-tests",
+                    "list-failing-tests"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"repo\": {\n    \"host\": \"github.com\",\n    \"owner\": \"my-org\",\n    \"name\": \"my-repo\"\n  },\n  \"org_url_slug\": \"<string>\",\n  \"start_time\": \"<dateTime>\",\n  \"end_time\": \"<dateTime>\",\n  \"page_query\": {\n    \"page_size\": \"<integer>\",\n    \"page_token\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"tests\": [\n    {\n      \"id\": \"219f41e7-1c73-e87c-f4a4-ed841a80154b\",\n      \"name\": \"string\",\n      \"variant\": \"string\",\n      \"classname\": \"string\",\n      \"file_path\": \"string\",\n      \"status\": {\n        \"value\": \"HEALTHY\",\n        \"reason\": \"string\",\n        \"timestamp\": \"2007-11-03T07:07:45.248Z\"\n      },\n      \"failure_rate_last_7d\": 3220.824328103934,\n      \"failure_rate_last_24h\": 6219.630005222203,\n      \"most_common_failures\": [\n        {\n          \"summary\": \"string\",\n          \"count\": 1168\n        },\n        {\n          \"summary\": \"string\",\n          \"count\": 7866\n        }\n      ],\n      \"quarantined\": false,\n      \"codeowners\": [\n        \"string\",\n        \"string\"\n      ],\n      \"pull_requests_impacted_last_7d\": 8879,\n      \"html_url\": \"string\",\n      \"ticket\": {\n        \"html_url\": \"string\"\n      }\n    },\n    {\n      \"id\": \"8f708d3d-3712-7ef9-a7a0-e5689a93239e\",\n      \"name\": \"string\",\n      \"variant\": \"string\",\n      \"classname\": \"string\",\n      \"file_path\": \"string\",\n      \"status\": {\n        \"value\": \"HEALTHY\",\n        \"reason\": \"string\",\n        \"timestamp\": \"1961-02-13T08:15:39.868Z\"\n      },\n      \"failure_rate_last_7d\": 4900.286222638609,\n      \"failure_rate_last_24h\": 2159.9530750243757,\n      \"most_common_failures\": [\n        {\n          \"summary\": \"string\",\n          \"count\": 5590\n        },\n        {\n          \"summary\": \"string\",\n          \"count\": 2064\n        }\n      ],\n      \"quarantined\": false,\n      \"codeowners\": [\n        \"string\",\n        \"string\"\n      ],\n      \"pull_requests_impacted_last_7d\": 1456,\n      \"html_url\": \"string\",\n      \"ticket\": {\n        \"html_url\": \"string\"\n      }\n    }\n  ],\n  \"page\": {\n    \"total_rows\": 1974,\n    \"total_pages\": 5717,\n    \"page_index\": 9672,\n    \"next_page_token\": \"string\",\n    \"prev_page_token\": \"string\",\n    \"last_page_token\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f1bbdd54-6f75-4756-9e86-b10ab7c36864",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "flaky-tests",
+                    "list-failing-tests"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"repo\": {\n    \"host\": \"github.com\",\n    \"owner\": \"my-org\",\n    \"name\": \"my-repo\"\n  },\n  \"org_url_slug\": \"<string>\",\n  \"start_time\": \"<dateTime>\",\n  \"end_time\": \"<dateTime>\",\n  \"page_query\": {\n    \"page_size\": \"<integer>\",\n    \"page_token\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f9c18a32-8a7a-4421-885c-a7e1c184650c",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "flaky-tests",
+                    "list-failing-tests"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"repo\": {\n    \"host\": \"github.com\",\n    \"owner\": \"my-org\",\n    \"name\": \"my-repo\"\n  },\n  \"org_url_slug\": \"<string>\",\n  \"start_time\": \"<dateTime>\",\n  \"end_time\": \"<dateTime>\",\n  \"page_query\": {\n    \"page_size\": \"<integer>\",\n    \"page_token\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "57b9ac08-2c95-4e22-b2b8-efdbd6e237b3",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "flaky-tests",
+                    "list-failing-tests"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"repo\": {\n    \"host\": \"github.com\",\n    \"owner\": \"my-org\",\n    \"name\": \"my-repo\"\n  },\n  \"org_url_slug\": \"<string>\",\n  \"start_time\": \"<dateTime>\",\n  \"end_time\": \"<dateTime>\",\n  \"page_query\": {\n    \"page_size\": \"<integer>\",\n    \"page_token\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "bf10bcc1-3ff4-4c51-a921-5d4824338ade",
+          "name": "Link a ticket to a test case",
+          "request": {
+            "name": "Link a ticket to a test case",
+            "description": {
+              "content": "Associate an external ticket (e.g. Jira \"KAN-123\" or Linear \"TRUNK-1234\") with a Trunk test case.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "flaky-tests",
+                "link-ticket-to-test-case"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"repo\": {\n    \"host\": \"<string>\",\n    \"owner\": \"<string>\",\n    \"name\": \"<string>\"\n  },\n  \"test_case_id\": \"<uuid>\",\n  \"external_ticket_id\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "99ed552b-a238-449a-9930-57f266bc6deb",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "flaky-tests",
+                    "link-ticket-to-test-case"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"repo\": {\n    \"host\": \"github.com\",\n    \"owner\": \"my-org\",\n    \"name\": \"my-repo\"\n  },\n  \"test_case_id\": \"<uuid>\",\n  \"external_ticket_id\": \"KAN-123\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d7c2c734-4ec3-4389-9bbc-3afd469cdba9",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "flaky-tests",
+                    "link-ticket-to-test-case"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"repo\": {\n    \"host\": \"github.com\",\n    \"owner\": \"my-org\",\n    \"name\": \"my-repo\"\n  },\n  \"test_case_id\": \"<uuid>\",\n  \"external_ticket_id\": \"KAN-123\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0e4b53ca-a8de-4457-a3e2-2b55fae6cc34",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "flaky-tests",
+                    "link-ticket-to-test-case"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"repo\": {\n    \"host\": \"github.com\",\n    \"owner\": \"my-org\",\n    \"name\": \"my-repo\"\n  },\n  \"test_case_id\": \"<uuid>\",\n  \"external_ticket_id\": \"KAN-123\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c2e34647-7b03-4657-9924-db5ccd4ee7a4",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "flaky-tests",
+                    "link-ticket-to-test-case"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"repo\": {\n    \"host\": \"github.com\",\n    \"owner\": \"my-org\",\n    \"name\": \"my-repo\"\n  },\n  \"test_case_id\": \"<uuid>\",\n  \"external_ticket_id\": \"KAN-123\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1e69a974-bb51-49d8-8dd6-1f983220ad18",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "flaky-tests",
+                    "link-ticket-to-test-case"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"repo\": {\n    \"host\": \"github.com\",\n    \"owner\": \"my-org\",\n    \"name\": \"my-repo\"\n  },\n  \"test_case_id\": \"<uuid>\",\n  \"external_ticket_id\": \"KAN-123\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.trunk.io/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "x-api-token"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "90005d21-a9d5-4cb0-b754-2d6f6d676734",
+    "name": "Trunk Flaky Tests API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "HTTP REST API for the Trunk platform. Covers the Flaky Tests API (query test-case state, list quarantined / unhealthy / failing tests, link external tickets) and the Merge Queue API (control the flake-aware parallel merge queue and read its metrics). All requests are authenticated with an organization API token passed in the x-api-token header and return JSON.\n\nContact Support:\n Name: Trunk Support",
+      "type": "text/plain"
+    }
+  }
+}

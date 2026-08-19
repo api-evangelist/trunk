@@ -1,0 +1,199 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Trunk Flaky Tests Merge Queue API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "x-api-token",
+      "value": "{{x-api-token}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Merge Queue",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Submit a pull request to the merge queue",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.trunk.io/v1/submitPullRequest",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Submit a pull request to the merge queue"
+        },
+        {
+          "info": {
+            "name": "Cancel a pull request in the merge queue",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.trunk.io/v1/cancelPullRequest",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Cancel a pull request in the merge queue"
+        },
+        {
+          "info": {
+            "name": "Get the state of a submitted pull request",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.trunk.io/v1/getSubmittedPullRequest",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Get the state of a submitted pull request"
+        },
+        {
+          "info": {
+            "name": "Restart tests on a pull request",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.trunk.io/v1/restartTestsOnPullRequest",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Restart tests on a pull request"
+        },
+        {
+          "info": {
+            "name": "Set the impacted targets for a pull request",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.trunk.io/v1/setImpactedTargets",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Set the impacted targets for a pull request"
+        },
+        {
+          "info": {
+            "name": "Get in-progress merge queue testing details",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.trunk.io/v1/getMergeQueueTestingDetails",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Get in-progress merge queue testing details"
+        },
+        {
+          "info": {
+            "name": "Create a merge queue",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.trunk.io/v1/createQueue",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a merge queue"
+        },
+        {
+          "info": {
+            "name": "Get a merge queue",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.trunk.io/v1/getQueue",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Get a merge queue"
+        },
+        {
+          "info": {
+            "name": "Update a merge queue configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.trunk.io/v1/updateQueue",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a merge queue configuration"
+        },
+        {
+          "info": {
+            "name": "Delete a merge queue",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.trunk.io/v1/deleteQueue",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Delete a merge queue"
+        },
+        {
+          "info": {
+            "name": "Get merge queue metrics (Prometheus text exposition format)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.trunk.io/v1/getMergeQueueMetrics",
+            "params": [
+              {
+                "name": "repo",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "repoHost",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get merge queue metrics (Prometheus text exposition format)"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -2,9 +2,8 @@ generated: '2026-07-21'
 method: derived
 status: candidate
 source: openapi/trunk-openapi.yml
-note: >-
-  No official hosted/remote Trunk MCP server was found. This is a candidate tool
-  list derived one-to-one from the OpenAPI operations, for building an MCP wrapper.
+note: No official hosted/remote Trunk MCP server was found. This is a candidate tool list derived one-to-one
+  from the OpenAPI operations, for building an MCP wrapper.
 server:
   name: trunk
   transport: http
@@ -57,3 +56,9 @@ tools:
 - name: getMergeQueueMetrics
   description: Get merge queue metrics (Prometheus text format).
   source_operation: openapi/trunk-openapi.yml#getMergeQueueMetrics
+deployment:
+  mode: none
+  verified: derived
+  tools: 16
+  checked: '2026-08-12'
+  source: catalog MCP census

@@ -1,0 +1,101 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Trunk Flaky Tests API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "x-api-token",
+      "value": "{{x-api-token}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Flaky Tests",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get the details of a test case",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.trunk.io/v1/flaky-tests/get-test-details",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Fetch detailed metadata for a single test case, including its current status, recent failure rates, most common failures, codeowners, and quarantine state."
+        },
+        {
+          "info": {
+            "name": "Get a list of quarantined tests",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.trunk.io/v1/flaky-tests/list-quarantined-tests",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "List tests currently quarantined in a repository, with pagination."
+        },
+        {
+          "info": {
+            "name": "Get a list of unhealthy tests",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.trunk.io/v1/flaky-tests/list-unhealthy-tests",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "List unhealthy tests in a repository, filtered by status (FLAKY or BROKEN), with pagination."
+        },
+        {
+          "info": {
+            "name": "Get a list of distinct tests that failed in the given time range",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.trunk.io/v1/flaky-tests/list-failing-tests",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "List distinct tests that failed within an inclusive start / exclusive end time range, with pagination."
+        },
+        {
+          "info": {
+            "name": "Link a ticket to a test case",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.trunk.io/v1/flaky-tests/link-ticket-to-test-case",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Associate an external ticket (e.g. Jira \"KAN-123\" or Linear \"TRUNK-1234\") with a Trunk test case."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
