@@ -28,7 +28,7 @@ x-tier-reason: portfolio-lead
 x-canonical: trunk-io
 x-canonical-note: This record duplicates the canonical, more fully enriched provider at all/trunk-io (same
   company, Trunk.io). Candidate for dedupe.
-specificationVersion: '0.20'
+specificationVersion: '0.23'
 created: '2026-07-17'
 modified: '2026-08-08'
 tags:
