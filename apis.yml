@@ -39,6 +39,15 @@ tags:
 - Merge Queue
 - Test Analytics
 - Static Analysis
+- Webhook
+tags_raw:
+- Developer Tools
+- CI/CD
+- Code Quality
+- Flaky Tests
+- Merge Queue
+- Test Analytics
+- Static Analysis
 - Webhooks
 apis:
 - aid: trunk:test-uploads-api
@@ -61,6 +70,10 @@ apis:
 - aid: trunk:webhooks-api
   name: Trunk Webhooks
   tags:
+  - Webhook
+  - Event
+  - Svix
+  tags_raw:
   - Webhooks
   - Events
   - Svix
