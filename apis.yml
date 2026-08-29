@@ -5,6 +5,18 @@ description: Trunk builds developer experience and CI reliability tooling. Its p
   and Flaky Tests detection / CI Analytics. Test results are uploaded from CI via the Trunk Analytics
   CLI / GitHub Action, and an HTTP REST API at api.trunk.io exposes Flaky Tests and Merge Queue control
   plus Svix-powered outbound webhooks. Trunk is a portfolio company of a16z.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: unknown
   onboarding: self-serve
