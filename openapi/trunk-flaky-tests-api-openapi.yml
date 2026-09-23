@@ -1,4 +1,4 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
   title: Trunk Flaky Tests API
   description: HTTP REST API for the Trunk platform. Covers the Flaky Tests API (query test-case state, list quarantined / unhealthy / failing tests, link external tickets) and the Merge Queue API (control the flake-aware parallel merge queue and read its metrics). All requests are authenticated with an organization API token passed in the x-api-token header and return JSON.
@@ -265,65 +265,19 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    BadRequest:
-      description: Bad Request
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
     NotFound:
       description: Not Found
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: Bad Request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   schemas:
-    Repo:
-      type: object
-      required:
-      - host
-      - owner
-      - name
-      properties:
-        host:
-          type: string
-          description: Repository host, e.g. github.com or gitlab.com.
-          example: github.com
-        owner:
-          type: string
-          example: my-org
-        name:
-          type: string
-          example: my-repo
-    Status:
-      type: object
-      properties:
-        value:
-          type: string
-          enum:
-          - HEALTHY
-          - FLAKY
-          - BROKEN
-        reason:
-          type: string
-        timestamp:
-          type: string
-          format: date-time
-    Page:
-      type: object
-      properties:
-        total_rows:
-          type: integer
-        total_pages:
-          type: integer
-        page_index:
-          type: integer
-        next_page_token:
-          type: string
-        prev_page_token:
-          type: string
-        last_page_token:
-          type: string
     TestDetail:
       type: object
       properties:
@@ -368,6 +322,52 @@ components:
           properties:
             html_url:
               type: string
+    Status:
+      type: object
+      properties:
+        value:
+          type: string
+          enum:
+          - HEALTHY
+          - FLAKY
+          - BROKEN
+        reason:
+          type: string
+        timestamp:
+          type: string
+          format: date-time
+    Page:
+      type: object
+      properties:
+        total_rows:
+          type: integer
+        total_pages:
+          type: integer
+        page_index:
+          type: integer
+        next_page_token:
+          type: string
+        prev_page_token:
+          type: string
+        last_page_token:
+          type: string
+    Repo:
+      type: object
+      required:
+      - host
+      - owner
+      - name
+      properties:
+        host:
+          type: string
+          description: Repository host, e.g. github.com or gitlab.com.
+          example: github.com
+        owner:
+          type: string
+          example: my-org
+        name:
+          type: string
+          example: my-repo
     PageQuery:
       type: object
       required:

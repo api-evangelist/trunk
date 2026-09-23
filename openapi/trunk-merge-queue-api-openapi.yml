@@ -1,6 +1,6 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Trunk Flaky Tests Merge Queue API
+  title: Trunk Merge Queue API
   description: HTTP REST API for the Trunk platform. Covers the Flaky Tests API (query test-case state, list quarantined / unhealthy / failing tests, link external tickets) and the Merge Queue API (control the flake-aware parallel merge queue and read its metrics). All requests are authenticated with an organization API token passed in the x-api-token header and return JSON.
   termsOfService: https://trunk.io/legal/terms
   contact:
@@ -313,6 +313,20 @@ components:
           properties:
             number:
               type: integer
+    PullRequestState:
+      type: object
+      properties:
+        state:
+          type: string
+          enum:
+          - NOT_READY
+          - PENDING
+          - TESTING
+          - TESTS_PASSED
+          - MERGED
+          - FAILED
+          - CANCELLED
+          - PENDING_FAILURE
     Repo:
       type: object
       required:
@@ -330,20 +344,6 @@ components:
         name:
           type: string
           example: my-repo
-    PullRequestState:
-      type: object
-      properties:
-        state:
-          type: string
-          enum:
-          - NOT_READY
-          - PENDING
-          - TESTING
-          - TESTS_PASSED
-          - MERGED
-          - FAILED
-          - CANCELLED
-          - PENDING_FAILURE
     Error:
       type: object
       properties:
@@ -362,14 +362,14 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    BadRequest:
-      description: Bad Request
+    NotFound:
+      description: Not Found
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    NotFound:
-      description: Not Found
+    BadRequest:
+      description: Bad Request
       content:
         application/json:
           schema:
