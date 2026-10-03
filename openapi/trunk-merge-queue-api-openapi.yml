@@ -289,12 +289,6 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    BadRequest:
-      description: Bad Request
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
     Unauthorized:
       description: Unauthorized
       content:
@@ -307,7 +301,32 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: Bad Request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   schemas:
+    PullRequestRef:
+      type: object
+      required:
+      - repo
+      - targetBranch
+      - pr
+      properties:
+        repo:
+          $ref: '#/components/schemas/Repo'
+        targetBranch:
+          type: string
+          example: main
+        pr:
+          type: object
+          required:
+          - number
+          properties:
+            number:
+              type: integer
     Repo:
       type: object
       required:
@@ -339,25 +358,6 @@ components:
           - FAILED
           - CANCELLED
           - PENDING_FAILURE
-    PullRequestRef:
-      type: object
-      required:
-      - repo
-      - targetBranch
-      - pr
-      properties:
-        repo:
-          $ref: '#/components/schemas/Repo'
-        targetBranch:
-          type: string
-          example: main
-        pr:
-          type: object
-          required:
-          - number
-          properties:
-            number:
-              type: integer
     QueueRef:
       type: object
       required:
