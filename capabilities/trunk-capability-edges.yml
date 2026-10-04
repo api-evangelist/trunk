@@ -1,0 +1,39 @@
+slug: trunk
+provider: Trunk
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Software & Technology
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 2
+edges:
+- tag: Flaky Tests
+  spec_file: trunk-flaky-tests-api-openapi.yml
+  capability_id: BC-4200.50
+  capability_id_l1: BC-4200
+  capability_name: Software Quality Engineering
+  confidence: 0.92
+  evidence: '''Get a list of quarantined tests'', ''Get a list of unhealthy tests'', ''Get a list of distinct
+    tests that failed in the given time range'', ''Link a ticket to a test case'' (schema: TestDetail)'
+  reason: Operations stewardship of the automated test suite — detecting flaky/unhealthy tests, quarantining
+    them and linking defect tickets to test cases. This is squarely Software Quality Engineering (test
+    suite stewardship and defect management).
+- tag: Merge Queue
+  spec_file: trunk-merge-queue-api-openapi.yml
+  capability_id: BC-4210.10
+  capability_id_l1: BC-4210
+  capability_name: Continuous Integration Management
+  confidence: 0.7
+  evidence: '''Submit a pull request to the merge queue'', ''Restart tests on a pull request'', ''Set
+    the impacted targets for a pull request'', ''Update a merge queue configuration'', ''Get merge queue
+    metrics (Prometheus text exposition format)'''
+  reason: A flake-aware merge queue gates pull requests by running impacted-target tests before integration
+    into the trunk branch, which is build/integration pipeline policy enforcement — Continuous Integration
+    Management. Confidence moderated because the surface also touches source-control/code-review practice
+    (BC-4200.40), making the sub-capability choice arguable.

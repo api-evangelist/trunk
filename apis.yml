@@ -157,6 +157,9 @@ apis:
   - type: APIReference
     url: https://docs.trunk.io/merge-queue/reference/merge
 common:
+- type: CapabilityMap
+  url: capabilities/trunk-capability-edges.yml
+  name: Trunk Business Capability Map
 - type: Website
   url: https://trunk.io/
 - type: Documentation
