@@ -252,31 +252,6 @@ paths:
         '500':
           $ref: '#/components/responses/ServerError'
 components:
-  responses:
-    NotFound:
-      description: Not Found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Unauthorized
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    ServerError:
-      description: Internal Server Error
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    BadRequest:
-      description: Bad Request
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   schemas:
     Repo:
       type: object
@@ -295,32 +270,6 @@ components:
         name:
           type: string
           example: my-repo
-    Page:
-      type: object
-      properties:
-        total_rows:
-          type: integer
-        total_pages:
-          type: integer
-        page_index:
-          type: integer
-        next_page_token:
-          type: string
-        prev_page_token:
-          type: string
-        last_page_token:
-          type: string
-    PageQuery:
-      type: object
-      required:
-      - page_size
-      properties:
-        page_size:
-          type: integer
-          minimum: 1
-          maximum: 100
-        page_token:
-          type: string
     TestDetail:
       type: object
       properties:
@@ -370,6 +319,32 @@ components:
       properties:
         message:
           type: string
+    Page:
+      type: object
+      properties:
+        total_rows:
+          type: integer
+        total_pages:
+          type: integer
+        page_index:
+          type: integer
+        next_page_token:
+          type: string
+        prev_page_token:
+          type: string
+        last_page_token:
+          type: string
+    PageQuery:
+      type: object
+      required:
+      - page_size
+      properties:
+        page_size:
+          type: integer
+          minimum: 1
+          maximum: 100
+        page_token:
+          type: string
     Status:
       type: object
       properties:
@@ -384,6 +359,31 @@ components:
         timestamp:
           type: string
           format: date-time
+  responses:
+    ServerError:
+      description: Internal Server Error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: Not Found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: Bad Request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   securitySchemes:
     ApiKeyAuth:
       type: apiKey
