@@ -305,6 +305,20 @@ components:
       properties:
         message:
           type: string
+    PullRequestState:
+      type: object
+      properties:
+        state:
+          type: string
+          enum:
+          - NOT_READY
+          - PENDING
+          - TESTING
+          - TESTS_PASSED
+          - MERGED
+          - FAILED
+          - CANCELLED
+          - PENDING_FAILURE
     PullRequestRef:
       type: object
       required:
@@ -324,20 +338,6 @@ components:
           properties:
             number:
               type: integer
-    PullRequestState:
-      type: object
-      properties:
-        state:
-          type: string
-          enum:
-          - NOT_READY
-          - PENDING
-          - TESTING
-          - TESTS_PASSED
-          - MERGED
-          - FAILED
-          - CANCELLED
-          - PENDING_FAILURE
     QueueRef:
       type: object
       required:
@@ -356,12 +356,6 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    NotFound:
-      description: Not Found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
     Unauthorized:
       description: Unauthorized
       content:
@@ -370,6 +364,12 @@ components:
             $ref: '#/components/schemas/Error'
     BadRequest:
       description: Bad Request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: Not Found
       content:
         application/json:
           schema:
