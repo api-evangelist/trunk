@@ -3,6 +3,8 @@ method: searched
 checked:
 - https://github.com/marketplace?type=actions
 - https://registry.modelcontextprotocol.io/v0/servers
+- opentofu/integrations/opentofu-integration-edges.yml
+- terraform/integrations/terraform-integration-edges.yml
 marketplace_apps: []
 edges:
 - partner_name: GitHub Marketplace (actions)
@@ -38,7 +40,7 @@ edges:
     registered_name: io.trunk/mcp-server
     register_id: io.trunk/mcp-server
     detected_by: sweep-agent-tools.py
-    detected: '2026-10-15'
+    detected: '2026-10-19'
   mcp_registry:
     servers:
     - io.trunk/mcp-server
@@ -54,5 +56,43 @@ edges:
   - namespace-domain
   detected_by: sweep-agent-tools.py
   first_seen: '2026-10-14'
+- partner_name: OpenTofu (opentofu-registry)
+  partner: opentofu
+  partner_match: mirror
+  mirror_match: register
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: opentofu-registry
+  evidence: https://search.opentofu.org/provider/trunk-io/trunk
+  mirror_of: opentofu/integrations/opentofu-integration-edges.yml
+  apps:
+  - trunk-io/trunk
+  listing_count: 1
+  detected: '2026-10-21'
+  detected_by: mirror-platform-listings.py
+  category: infrastructure-as-code provider registry listing
+  badges:
+  - Verified publisher (GitHub domain-verified organization)
+- partner_name: Terraform (terraform-registry)
+  partner: terraform
+  partner_match: mirror
+  mirror_match: register
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: terraform-registry
+  evidence: https://registry.terraform.io/providers/trunk-io/trunk
+  mirror_of: terraform/integrations/terraform-integration-edges.yml
+  apps:
+  - trunk-io/trunk
+  listing_count: 1
+  detected: '2026-10-21'
+  detected_by: mirror-platform-listings.py
+  category: infrastructure-as-code provider registry listing
+  badges:
+  - Verified publisher (GitHub domain-verified organization)
 source:
 - https://github.com/marketplace?type=actions
