@@ -64,6 +64,144 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Trunk is a company surfaced as a portfolio company of a16z and added to the API Evangelist network as a stub for enrichment. This profile is a lead awaiting the enrichment pipeline.
+Trunk builds developer experience and CI reliability tooling. Its platform spans Code Quality (a meta-linter and static analysis manager driven by the trunk CLI), a flake-aware parallel Merge Queue, and Flaky Tests detection / CI Analytics. Test results are uploaded from CI via the Trunk Analytics CLI / GitHub Action, and an HTTP REST API at api.trunk.io exposes Flaky Tests and Merge Queue control plus Svix-powered outbound webhooks. Trunk is a portfolio company of a16z.
 
-Backed by: a16z
+**Areas:** Developer Tools · CI/CD · Code Quality · Flaky Tests · Merge Queue · Test Analytics · Static Analysis · Webhook
+
+## Trunk on APIs.io
+
+Everything profiled for Trunk is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/trunk/](https://apis.io/providers/trunk/)** — or go straight to one of the APIs or properties below.
+
+### APIs (5)
+
+- [Trunk Test Uploads (Analytics CLI)](https://apis.io/apis/trunk/test-uploads-api/) — CI test-result ingestion surface. The trunk-analytics-cli (and the trunk-io/analytics-uploader GitHub Action) uploads JUnit XML, Bazel BEP, and XCResult…
+- [Trunk Webhooks](https://apis.io/apis/trunk/webhooks-api/) — Svix-powered outbound webhooks for subscribing to Flaky Tests events (test_case.status_changed, test_case.monitor_status_changed,…
+- [Trunk Code Quality CLI](https://apis.io/apis/trunk/code-quality-cli/) — Meta-linter and static analysis manager exposed through the trunk CLI and a local daemon (no public REST API). Commands include trunk init, trunk check, and…
+- [Trunk Flaky Tests API](https://apis.io/apis/trunk/trunk-flaky-tests-api/) — Query Flaky Tests state and link tickets.
+- [Trunk Merge Queue API](https://apis.io/apis/trunk/trunk-merge-queue-api/) — Control the Trunk Merge Queue.
+
+### Published properties
+
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
+
+#### AsyncAPI (1)
+
+Event-driven and webhook contracts.
+
+- [Trunk Webhooks](https://apis.io/asyncapis/trunk/trunk-webhooks/)
+
+#### MCP servers (1)
+
+Model Context Protocol servers that expose the API to agents.
+
+- [trunk](https://apis.io/servers/trunk/trunk/)
+
+#### Agentic access (1)
+
+Which operations an agent can call, which act, and which need a human in the loop.
+
+- [Trunk Agentic Access](https://apis.io/agentic-access/trunk/trunk-agentic-access/)
+
+#### Collections (3)
+
+Postman and Open Collection request collections.
+
+- [Trunk Flaky Tests API](https://apis.io/collections/trunk/open-trunk-flaky-tests-api/)
+- [Trunk API](https://apis.io/collections/trunk/open-trunk-io/)
+- [Trunk Flaky Tests Merge Queue API](https://apis.io/collections/trunk/open-trunk-merge-queue-api/)
+
+#### Overlays (1)
+
+OpenAPI overlays, including conversational phrasing for each operation.
+
+- [Trunk Openapi Overlay](https://apis.io/overlays/trunk/trunk-openapi-overlay/)
+
+#### Security (3)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Trunk Authentication](https://apis.io/security/trunk/trunk-authentication/)
+- [Trunk Domain Security](https://apis.io/security/trunk/trunk-domain-security/)
+- [Trunk Vulnerability Disclosure](https://apis.io/security/trunk/trunk-vulnerability-disclosure/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Trunk Plans Pricing](https://apis.io/plans/trunk/trunk-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Trunk Rate Limits](https://apis.io/rate-limits/trunk/trunk-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Trunk Finops](https://apis.io/finops/trunk/trunk-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://trunk.io/)
+- [Documentation](https://docs.trunk.io)
+- [Blog](https://trunk.io/feed.xml)
+- [Security](https://trunk.io/security)
+- [Terms of service](https://trunk.io/legal/terms)
+- [GitHub](https://github.com/trunk-io)
+
+## API Evangelist rating
+
+**Kin Score 37.8** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 66.1 |
+| Contract quality | 58.1 |
+| Contract governance | 4.5 |
+| Operational transparency | 28.9 |
+| Developer ergonomics | 51.8 |
+| Access clarity | 7.9 |
+
+**Agent readiness 28.1** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | documented (partial credit) |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | derived (partial credit) |
+| OpenAPI Examples | partial |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | yes |
+| Agent Skills | derived (partial credit) |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 22.5** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/trunk/](https://apis.io/providers/trunk/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Trunk: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/trunk/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
